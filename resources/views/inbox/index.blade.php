@@ -35,8 +35,42 @@
                 </div>
             </div>
             <div class="divider my-0"></div>
-            <div class="mx-3 my-2 flex flex-col gap-6 h-full overflow-y-auto">
+            <div class="mx-3 my-2 flex flex-col-reverse gap-6 h-full overflow-y-auto" style="overflow-anchor: none;">
+                {{-- use latest messages first to load them at bottom --}}
 
+                {{-- sender --}}
+                <div class="chat chat-start">
+                    <div class="chat-image avatar">
+                      <div class="w-10 rounded-full">
+                        <img src="https://placeimg.com/192/192/people" />
+                      </div>
+                    </div>
+                    <div class="chat-header">
+                      Obi-Wan Kenobi
+                      <time class="text-xs opacity-50">12:45</time>
+                    </div>
+                    <div class="chat-bubble">You were the Chosen One!You were the Chosen One!You were the Chosen One!You were the Chosen One!You were the Chosen One!You were the Chosen One!You were the Chosen One!</div>
+                    <div class="chat-footer opacity-50">
+                      Delivered
+                    </div>
+                  </div>
+
+                  {{-- receiver --}}
+                  <div class="chat chat-end">
+                    <div class="chat-image avatar">
+                      <div class="w-10 rounded-full">
+                        <img src="https://placeimg.com/192/192/people" />
+                      </div>
+                    </div>
+                    <div class="chat-header">
+                      Anakin
+                      <time class="text-xs opacity-50">12:46</time>
+                    </div>
+                    <div class="chat-bubble">I hate you!</div>
+                    <div class="chat-footer opacity-50">
+                      Seen at 12:46
+                    </div>
+                  </div>
             </div>
             <div class="divider my-0"></div>
             <div class="flex flex-col mx-3">
