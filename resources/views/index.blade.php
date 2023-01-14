@@ -1,8 +1,13 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="container mx-auto max-w-2xl my-5 flex justify-center">
-        <div class="card w-144 bg-base-200 shadow-2xl border border-gray-600">
+    <div class="container mx-auto max-w-2xl my-5 flex flex-col items-center">
+        <a href="{{ route('posts.create') }}" class="btn btn-circle btn-outline bg-base-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </a>
+        <div class="card w-144 bg-base-200 shadow-2xl my-4 border border-gray-600">
             <div class="flex items-center justify-between mt-2 mx-2">
                 <div class="avatar items-center">
                     <div class="w-10 rounded-full">
