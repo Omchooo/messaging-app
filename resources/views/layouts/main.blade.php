@@ -34,7 +34,7 @@
                             <ul tabindex="0"
                                 class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52">
                                 <li>
-                                    <a href="{{ route('viewprofile.index') }}" class="justify-between">
+                                    <a href="{{ route('viewprofile.index', Auth::user()) }}" class="justify-between">
                                         Profile
                                         <span class="badge">New</span>
                                     </a>
@@ -43,9 +43,9 @@
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                                        <a href="route('logout')">
+                                        <button type="submit">
                                             {{ __('Log Out') }}
-                                        </a>
+                                        </button>
                                     </form>
                                 </li>
                             </ul>

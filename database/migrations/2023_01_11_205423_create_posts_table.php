@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('desc');
-            $table->string('file');
-            $table->string('dimension');
-            $table->unsignedInteger('likes_count')->default(0);
+            $table->string('desc')->nullable();
+            // $table->string('image');
+            // $table->string('dimension');
+            $table->unsignedInteger('likes')->default(0);
             $table->boolean('is_published')->default(true);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
