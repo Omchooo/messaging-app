@@ -11,7 +11,7 @@
                 </div>
             </div>
                 <span class="my-1 text-2xl max-w-[90%] break-all">Name and Surname</span>
-            <span class="my-1 text-xl max-w-[90%] truncate">Username</span>
+            <span class="my-1 text-xl max-w-[90%] truncate">{{ $user->name }}</span>
             <span class="my-1 text-md max-w-[90%] break-all whitespace-pre-line">BioBioBioBioBioBioBioBioBioBioBioBioBioBioBioBioBioBioBioBio</span>
             <div class="btn btn-info btn-lg btn-outline text-xs min-h-[2.5rem] h-10">follow</div> {{-- btn-neutral if following --}}
         </div>
@@ -26,12 +26,13 @@
             <a class="tab tab-bordered">Deleted</a>
         </div>
         <div class="max-w-5xl w-full gap-8 flex flex-wrap ">
+            @foreach ($posts as $post)
             <a >
                 <figure>
-                    <img src="https://placeimg.com/400/600/arch" alt="Shoes" class="aspect-1/1 w-80" />
+                    <img src="{{ $post->getFirstMediaUrl() }}" alt="Image" class="aspect-1/1 w-80" />
                 </figure>
             </a>
-
+            @endforeach
         </div>
       </div>
     </div>

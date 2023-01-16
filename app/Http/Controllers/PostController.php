@@ -20,9 +20,10 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        // $post = Post::create($request->getData());
-        // $post->addMediaFromRequest('image')->toMediaCollection();
+        $post = Post::create($request->getData());
+        $post->addMediaFromRequest('image')->toMediaCollection();
         // $post = $request->getData();
-        dump($request->getData());
+        // dump($request->getData());
+        return view('posts.index');
     }
 }
