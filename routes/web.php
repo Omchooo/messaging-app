@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
 
     // //ProfileController already taken by breeze
-    Route::get('/user/{user:name}', [ViewController::class, 'index'])->name('viewprofile.index');
+    Route::get('/user/{user:username}', [ViewController::class, 'index'])->name('viewprofile.index');
 
     Route::get('/post', [PostController::class, 'index'])->name('posts.index'); //later  transfer to route show instead of index
     Route::get('/post/create', [PostController::class, 'create'])->name('posts.create');

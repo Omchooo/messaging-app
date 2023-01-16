@@ -14,6 +14,7 @@ class ViewController extends Controller
         DB::enableQueryLog();
         $posts = Post::latest()->where('user_id', $user->id)->get();
         dump(DB::getQueryLog());
+        // dump($posts);
         return view('viewprofile.index', compact('user', 'posts'));
     }
 }
