@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     @vite('resources/css/app.css')
+    @livewireStyles
 
     <title>Laravel</title>
 
@@ -12,7 +14,7 @@
 
 <body>
     <div class="h-screen flex flex-col justify-between">
-        <div>
+        <div class="flex flex-col items-center">
             <div class="container mx-auto max-w-5xl my-5">
                 <div class="navbar bg-base-200 shadow-xl rounded-box border border-gray-600">
                     <div class="flex-none">
@@ -41,9 +43,9 @@
                                 </li>
                                 <li><a href="{{ route('profile.edit') }}">Settings</a></li>
                                 <li>
-                                    <form method="POST" action="{{ route('logout') }}">
+                                    <form method="POST" action="{{ route('logout') }}" class="mb-0">
                                         @csrf
-                                        <button type="submit">
+                                        <button type="submit" class="w-full text-left">
                                             {{ __('Log Out') }}
                                         </button>
                                     </form>
@@ -94,6 +96,7 @@
         </footer>
     </div>
 
+    @livewireScripts
 </body>
 
 </html>

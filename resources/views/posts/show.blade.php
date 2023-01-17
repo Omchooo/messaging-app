@@ -3,9 +3,9 @@
 @section('content')
     <div class="container mx-auto max-w-6xl my-5 flex flex-col items-center">
         <div class="flex-row card bg-base-200 rounded-none">
-            <figure>
-                <img src="https://placeimg.com/400/600/arch" alt="Shoes" class="" />
-            </figure>
+            <picture class="flex items-center">
+                <img src="{{ $post->getFirstMediaUrl() }}" alt="Image" class="min-w-[22rem]" />
+            </picture>
             <div class="w-[38rem] flex flex-col">
                 <div class="flex items-center justify-between mt-2 mx-2">
                     <div class="avatar items-center">

@@ -7,7 +7,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </a>
-        <a href="{{ route('posts.index') }}" class="btn btn-circle btn-outline bg-base-200">Posts</a>
+        {{-- <a href="{{ route('posts.show') }}" class="btn btn-circle btn-outline bg-base-200">Posts</a> --}}
         <div class="card w-144 bg-base-200 shadow-2xl my-4 border border-gray-600">
             <div class="flex items-center justify-between mt-2 mx-2">
                 <div class="avatar items-center">

@@ -8,10 +8,6 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index()
-    {
-        return view('posts.index');
-    }
 
     public function create()
     {
@@ -24,6 +20,11 @@ class PostController extends Controller
         $post->addMediaFromRequest('image')->toMediaCollection();
         // $post = $request->getData();
         // dump($request->getData());
-        return view('posts.index');
+        return redirect()->route('posts.create')->with('message', 'Post has been successfully published');
+    }
+
+    public function show(Post $post)
+    {
+        return view('posts.show', compact('post'));
     }
 }
