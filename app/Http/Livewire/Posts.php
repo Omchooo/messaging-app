@@ -11,15 +11,17 @@ class Posts extends Component
 
     public $amount = 6;
 
+    public $user;
+
     public function loadMore()
     {
         $this->amount += 6;
     }
 
-    public function render(User $user)
+    public function render()
     {
-        $posts = Post::latest()->where('user_id', auth()->user()->id)->paginate($this->amount);
-        // dump(auth()->user()->id);
+        $posts = Post::latest()->where('user_id', $this->user->id)->paginate($this->amount);
+        // dump($this->user->id);
         return view('livewire.posts', compact('posts'));
     }
 

@@ -6,6 +6,7 @@
             </picture>
         </a>
     @endforeach
+    {{-- {{ $user }} --}}
 
     @if ($posts->hasMorePages())
         <button wire:click="loadMore" class="btn btn-info btn-outline">Load more</button>

@@ -28,7 +28,8 @@
             </div>
             <div class="max-w-5xl w-full" >
                 {{-- @if (isset($posts)) --}}
-                    <livewire:posts>
+                    <livewire:posts :user="$user">
+
                 {{-- @else
                     <div class="flex justify-center w-full">
                         <span>This user has no posts</span>
