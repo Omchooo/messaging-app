@@ -2,41 +2,47 @@
 
 @section('content')
     <div class="container mx-auto max-w-6xl my-5 flex flex-col items-center">
-        <div class="flex-row card bg-base-200 rounded-none">
+        <div class="flex-row w-[72rem] card bg-base-200 rounded-none">
             <picture class="flex items-center">
-                <img src="{{ $post->getFirstMediaUrl() }}" alt="Image" class="min-w-[22rem]" />
+                <img src="{{ $post->getFirstMediaUrl() }}" alt="Image" class="min-w-[22rem] max-w-xl" />
             </picture>
-            <div class="w-[38rem] flex flex-col">
+            <div class=" w-[38rem] flex flex-col">
                 <div class="flex items-center justify-between mt-2 mx-2">
                     <div class="avatar items-center">
                         <div class="w-10 rounded-full">
                             <img src="https://placeimg.com/192/192/people" />
                         </div>
-                        <span class="mx-2">username</span>
+                        <span class="mx-2">{{ $post->user->username }}</span>
                     </div>
                     <div class="btn btn-info btn-xs btn-outline text-xs">follow</div> {{-- btn-neutral if following --}}
                 </div>
                 <div class="divider my-0"></div>
                 <div class="mx-3 my-2 flex flex-col gap-6 min-h-[20rem] h-full overflow-y-auto">
+                    @isset($post->desc)
                     <div class="avatar items-center">
                         <div class="w-10 rounded-full">
                             <img src="https://placeimg.com/192/192/people" />
                         </div>
-                        <span class="mx-2 truncate max-w-[7.5rem]">username - </span>
-                        <span class="break-all max-w-[24rem]">desc desc desc desc desc desc desc desc desc desc
-                            desc desc desc desc desc desc desc desc desc desc desc </span>
+                        <span class="mx-2 truncate max-w-[7.5rem]">{{ $post->user->username }} - </span>
+
+                        <span class="break-all max-w-[24rem]">{{ $post->desc }}</span>
                     </div>
+                    @endisset
 
                     {{-- comment with replies --}}
                     <div class="flex flex-col gap-4">
                         {{-- comment by user --}}
                         <div class="flex justify-between items-center">
-                            <div class="avatar items-center">
-                                <div class="w-10 rounded-full">
-                                    <img src="https://placeimg.com/192/192/people" />
+                            <div class="h-full">
+                                <div class="avatar">
+                                    <div class="w-10 rounded-full">
+                                        <img src="https://placeimg.com/192/192/people" />
+                                    </div>
                                 </div>
-                                <span class="mx-2">username - </span>
-                                <span class="break-all w-[24rem]">comment </span>
+                            </div>
+                            <div class="max-w-[26rem] mx-4">
+                                <p class=" w-full">username - </p>
+                                <span class="break-words">this is my sincere comment to this beautiful post of an image that has been taken almost perfectly, the reason i said almost is because nothing in this world is perfect </span>
                             </div>
                             <div class="btn btn-circle btn-sm btn-link flex justify-center items-center float-right mr-1">
                                 <svg height="12px" width="12px" viewBox="0 0 24 24" fill="#8e8e8e"
@@ -51,12 +57,18 @@
                         {{-- load more replies --}}
                         <button class="btn btn-xs {{-- loading --}} ml-14 w-32">View replies</button>
                         {{-- replies --}}
-                        <div class="avatar items-center ml-14">
-                            <div class="w-10 rounded-full">
-                                <img src="https://placeimg.com/192/192/people" />
+                        <div class="flex justify-between items-center">
+                            <div class="h-full">
+                                <div class="avatar items-center ml-14">
+                                    <div class="w-10 rounded-full">
+                                        <img src="https://placeimg.com/192/192/people" />
+                                    </div>
+                                </div>
                             </div>
-                            <span class="mx-2">username - </span>
-                            <span class="break-all w-[22rem]">reply</span>
+                            <div class="max-w-[24rem] mx-4">
+                                <p class=" w-full">username - </p>
+                                <span class="break-words">this is my sincere comment to this beautiful post of an image that has been taken almost perfectly, the reason i said almost is because nothing in this world is perfect </span>
+                            </div>
                             <div>
                                 <div
                                     class="btn btn-circle btn-sm btn-link flex justify-center items-center float-right mr-1">
