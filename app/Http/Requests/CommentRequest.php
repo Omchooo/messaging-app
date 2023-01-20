@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PostRequest extends FormRequest
+class CommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,15 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'required|image',
-            'desc' => 'nullable|string|max:255',
+            'comment' => 'required|string',
         ];
     }
 
     public function getData()
     {
         $data = $this->validated() + [
-            'user_id' => $this->user()->id
+            'user_id' => $this->user()->id,
+            'post_id' => $this->query('post'),
         ];
 
         return $data;
