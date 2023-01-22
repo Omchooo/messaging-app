@@ -26,10 +26,13 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        dump($post->id);
+        // dump($post->id);
         // $comments = $post->comments;
         $comments = Comment::latest()->where('post_id', $post->id)->paginate(6);
+        $post->fresh();
         // dump(request()->route('post'));
         return view('posts.show', compact('post', 'comments'));
     }
+
+
 }
