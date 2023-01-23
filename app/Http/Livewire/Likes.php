@@ -7,15 +7,44 @@ use Livewire\Component;
 
 class Likes extends Component
 {
+    public $likeColor;
     public $post;
+    public $comment;
+    public $type;
+
+    public function getType()
+    {
+        if ($this->post) {
+            $this->type = $this->post;
+        }
+        else {
+            $this->type = $this->comment;
+        }
+    }
+
+    public function getColor()
+    {
+        $this->getType();
+        if (Auth::user()->hasLiked($this->type)) {
+            $this->likeColor = '#ed4956';
+        }
+        else {
+            $this->likeColor = '#8e8e8e';
+        }
+    }
 
     public function getLike()
     {
-        return Auth::user()->toggleLike($this->post);
+        $this->getType();
+        $this->getColor();
+        return Auth::user()->toggleLike($this->type);
     }
 
     public function render()
     {
-        return view('livewire.likes');
+        // $this->getType();
+        $this->getColor();
+        $color = $this->likeColor;
+        return view('livewire.likes', compact('color'));
     }
 }
