@@ -11,6 +11,7 @@ class Likes extends Component
     public $post;
     public $comment;
     public $type;
+    // public
 
     public function getType()
     {
@@ -33,11 +34,20 @@ class Likes extends Component
         }
     }
 
-    public function getLike()
+    public function setLike()
     {
         $this->getType();
         $this->getColor();
         return Auth::user()->toggleLike($this->type);
+    }
+
+    public function getLikes()
+    {
+        $this->getType();
+        // $likesCount = $this->type->likers_count;
+        // dump($this->type);
+        // dump($likesCount);
+        return $this->type->likers_count;
     }
 
     public function render()
@@ -45,6 +55,8 @@ class Likes extends Component
         // $this->getType();
         $this->getColor();
         $color = $this->likeColor;
-        return view('livewire.likes', compact('color'));
+        $likes = $this->getLikes();
+
+        return view('livewire.likes', compact('color', 'likes'));
     }
 }

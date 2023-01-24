@@ -12,9 +12,11 @@
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.11",
         "overtrue/laravel-like": "^5.0",
+        "spatie/laravel-collection-macros": "^7.12",
         "spatie/laravel-medialibrary": "10.0.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.7",
         "fakerphp/faker": "^1.9.1",
         "laravel/breeze": "^1.17",
         "laravel/pint": "^1.0",

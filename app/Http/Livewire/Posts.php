@@ -20,7 +20,7 @@ class Posts extends Component
 
     public function render()
     {
-        $posts = Post::latest()->where('user_id', $this->user->id)->paginate($this->amount);
+        $posts = Post::latest()->with('media')->where('user_id', $this->user->id)->paginate($this->amount);
         // dump($this->user->id);
         return view('livewire.posts', compact('posts'));
     }

@@ -16,7 +16,7 @@ class Post extends Model implements HasMedia
         'desc',
         'user_id',
     ];
-//create like system for liking and unliking a post in laravel
+
     // public function toggleLike($id)
     // {
     //     $post = Post::find($id);

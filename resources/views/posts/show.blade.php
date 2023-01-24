@@ -31,29 +31,31 @@
 
                     {{-- comment with replies --}}
                     @isset($comments)
-                    @foreach ($comments as $comment)
-                    <div class="flex flex-col gap-4">
-                        {{-- comment by user --}}
-                        <div class="flex justify-between items-center">
-                            <div class="h-full">
-                                <div class="avatar">
-                                    <div class="w-10 rounded-full">
-                                        <img src="https://placeimg.com/192/192/people" />
+                        @foreach ($comments as $comment)
+                            <div class="flex flex-col gap-4">
+                                {{-- comment by user --}}
+                                <div class="flex justify-between items-center">
+                                    <div class="h-full">
+                                        <div class="avatar">
+                                            <div class="w-10 rounded-full">
+                                                <img src="https://placeimg.com/192/192/people" />
+                                            </div>
+                                        </div>
                                     </div>
+                                    <div class="max-w-[30rem] mx-4 flex flex-col w-full items-start">
+                                        <p class="w-full"><a
+                                                href="{{ route('viewprofile.index', $comment->user) }}">{{ $comment->user->username }}</a>
+                                        </p>
+                                        <span class="break-words text-sm">{{ $comment->comment }}</span>
+                                    </div>
+                                    <livewire:likes :comment="$comment">
                                 </div>
-                            </div>
-                            <div class="max-w-[30rem] mx-4 flex flex-col w-full items-start">
-                                <p class="w-full"><a href="{{ route('viewprofile.index', $comment->user) }}">{{ $comment->user->username }}</a></p>
-                                <span class="break-words text-sm">{{ $comment->comment }}</span>
-                            </div>
-                            <livewire:likes :comment="$comment">
-                        </div>
 
-                        {{-- load more replies --}}
-                        {{-- <button class="btn btn-xs loading ml-14 w-32">View replies</button> --}}
+                                {{-- load more replies --}}
+                                {{-- <button class="btn btn-xs loading ml-14 w-32">View replies</button> --}}
 
-                        {{-- replies --}}
-                        {{-- <div class="flex justify-between items-center">
+                                {{-- replies --}}
+                                {{-- <div class="flex justify-between items-center">
                             <div class="h-full">
                                 <div class="avatar items-center ml-14">
                                     <div class="w-10 rounded-full">
@@ -78,14 +80,14 @@
                             </div>
                         </div> --}}
 
-                    </div>
-                    @endforeach
+                            </div>
+                        @endforeach
                     @endisset
                     {{-- load more comments --}}
                     @if ($comments->hasMorePages())
-                    <div class="flex w-full justify-center my-4">
-                        <button class="btn btn-xs {{-- loading --}} w-32">Load more</button>
-                    </div>
+                        <div class="flex w-full justify-center my-4">
+                            <button class="btn btn-xs {{-- loading --}} w-32">Load more</button>
+                        </div>
                     @endif
                 </div>
                 <div class="divider my-0"></div>
@@ -93,8 +95,8 @@
                 <div class="flex flex-col mx-3">
                     <div class="flex">
                         <livewire:likes :post="$post">
-                    </form>
-                        {{-- <div class="btn btn-circle btn-sm btn-link">
+                            </form>
+                            {{-- <div class="btn btn-circle btn-sm btn-link">
                             <svg height="24px" width="24px" fill="#8e8e8e" color="#8e8e8e" viewBox="0 0 24 24">
                                 <path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none"
                                     stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
@@ -106,7 +108,8 @@
                     <form method="POST" action="{{ route('comments.store', compact('post')) }}">
                         @csrf
                         <div class="flex items-center justify-between px-3 my-2 gap-1">
-                            <input type="text" name="comment" placeholder="Add a comment..." class="input input-ghost w-full" />
+                            <input type="text" name="comment" placeholder="Add a comment..."
+                                class="input input-ghost w-full" />
                             <button class="btn btn-circle btn-sm btn-link" type="submit">
                                 <svg aria-label="Share Post" color="#8e8e8e" fill="#8e8e8e" height="24" role="img"
                                     viewBox="0 0 24 24" width="24">

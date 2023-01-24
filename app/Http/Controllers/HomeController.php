@@ -12,17 +12,21 @@ class HomeController extends Controller
 {
     public function index()
     {
-        try {
+        // try {
             // DB::enableQueryLog();
             // $users = User::where('is_public', 1)->get();
-            $posts = Post::latest()->paginate(6);
+            $posts = Post::latest()
+            ->with('media')
+            ->with('comments')
+            ->withCount('likers')
+            ->paginate(6);
             // $posts = auth()->user()->posts()->get();
             // $posts = Post::paginate(6);
             // dump([$users, $posts]);
             // dump(DB::getQueryLog());
-        } catch (\Throwable $th) {
-            throw $th;
-        }
+        // } catch (\Throwable $th) {
+        //     throw $th;
+        // }
 
 
         return view('index', compact('posts'));
