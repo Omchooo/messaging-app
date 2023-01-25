@@ -110,8 +110,8 @@
                         <div class="flex items-center justify-between px-3 my-2 gap-1">
                             <input type="text" name="comment" placeholder="Add a comment..."
                                 class="input input-ghost w-full" />
-                            <button class="btn btn-circle btn-sm btn-link" type="submit">
-                                <svg aria-label="Share Post" color="#8e8e8e" fill="#8e8e8e" height="24" role="img"
+                            <button class="btn btn-circle btn-sm btn-link" type="submit" >
+                                <svg color="#8e8e8e" fill="#8e8e8e" height="24" role="img"
                                     viewBox="0 0 24 24" width="24">
                                     <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"
                                         x1="22" x2="9.218" y1="3" y2="10.083"></line>
@@ -126,4 +126,12 @@
             </div>
         </div>
     </div>
+
+
+    <script>
+        $("form").submit(function() {
+            $.post($(this).attr("action"), $(this).serialize());
+            return false;
+        });
+    </script>
 @endsection
