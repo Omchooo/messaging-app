@@ -37,7 +37,7 @@ class Likes extends Component
     public function setLike()
     {
         $this->getType();
-        $this->getColor();
+        // $this->getColor();
         return Auth::user()->toggleLike($this->type);
     }
 

@@ -13,7 +13,7 @@ class Modal extends Component
 
     public function loadMore()
     {
-        $this->amount += 6;
+        $this->amount += 3;
     }
 
     public function setState()
@@ -25,14 +25,27 @@ class Modal extends Component
         }
     }
 
+
     public function render()
     {
-        $comments = $this->post->comments->paginate($this->amount);
-        // $comments = Comment::latest()->where('post_id', $this->post->id)->paginate(6);
+        // if ($this->state == 'fixed') {
+        //     $comments = $this->post->comments->paginate($this->amount);
+
+        //     return view('livewire.modal', compact('comments', 'modalState'));
+        // }
+
+        $comments = Comment::latest()
+        // ->withCount('likers')
+        ->where('post_id', $this->post->id)
+        ->paginate($this->amount);
+        // $comments = $this->post->comments->paginate($this->amount);
+
         // $freshPost = $this->post->fresh();
         // $this->setState();
-        $modalState = $this->state;
+        // $modalState = $this->state;
+        $text = '';
 
-        return view('livewire.modal', compact('comments', 'modalState'));
+
+        return view('livewire.modal', compact('comments', 'text'));
     }
 }

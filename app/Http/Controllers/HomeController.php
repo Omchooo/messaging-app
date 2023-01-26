@@ -16,9 +16,10 @@ class HomeController extends Controller
             // DB::enableQueryLog();
             // $users = User::where('is_public', 1)->get();
             $posts = Post::latest()
+            ->with('user')
             ->with('media')
-            ->with('comments')
-            ->with('likers')
+            ->withCount('comments')
+            // ->with('likers')
             ->paginate(6);
             // $posts = auth()->user()->posts()->get();
             // $posts = Post::paginate(6);

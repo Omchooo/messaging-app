@@ -1,9 +1,9 @@
 <div>
-    <label class="hover:cursor-pointer" wire:click='setState' :state='$modalState'>view all {{ $post->comments->count() }} comments</label>
+    <label class="hover:cursor-pointer" wire:click='setState' :state='$state'>view all {{ $post->comments_count }} comments</label>
 
     {{-- comments modal --}}
     {{-- <input type="checkbox" id="my-modal" class="modal-toggle" /> --}}
-    <div class="{{ $modalState }} fixed top-0 right-0 left-0 bottom-0 justify-center items-center z-50 bg-base-300 bg-opacity-80">
+    <div class="{{ $state }} fixed top-0 right-0 left-0 bottom-0 justify-center items-center z-50 bg-base-300 bg-opacity-80">
         <div class="relative">
             <div class="absolute -right-20 top-2">
                 <button class="btn btn-square bg-base-200 text-xl" wire:click='setState'>X</button>
@@ -88,20 +88,20 @@
 
                             </div>
                             @endforeach
-                        @endisset
                         {{-- load more comments --}}
                         @if ($comments->hasMorePages())
                             <div class="flex w-full justify-center my-4">
                                 <button class="btn btn-xs {{-- loading --}} w-32" wire:click='loadMore'>Load more</button>
                             </div>
                         @endif
+                        @endisset
+
                     </div>
                     <div class="divider my-0"></div>
 
                     <div class="flex flex-col mx-3">
                         <div class="flex">
                             <livewire:likes :post="$post">
-                                </form>
                                 {{-- <div class="btn btn-circle btn-sm btn-link">
                                 <svg height="24px" width="24px" fill="#8e8e8e" color="#8e8e8e" viewBox="0 0 24 24">
                                     <path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none"
@@ -114,7 +114,7 @@
                         <form method="POST" action="{{ route('comments.store', compact('post')) }}">
                             @csrf
                             <div class="flex items-center justify-between px-3 my-2 gap-1">
-                                <input type="text" name="comment" id="inputText" placeholder="Add a comment..."
+                                <input type="text" name="comment" placeholder="Add a comment..."
                                     class="input input-ghost w-full" />
                                 <button class="btn btn-circle btn-sm btn-link" type="submit">
                                     <svg color="#8e8e8e" fill="#8e8e8e" height="24" role="img"
