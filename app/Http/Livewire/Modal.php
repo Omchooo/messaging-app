@@ -34,11 +34,11 @@ class Modal extends Component
         //     return view('livewire.modal', compact('comments', 'modalState'));
         // }
 
-        $comments = Comment::latest()
+        // $comments = Comment::latest()
         // ->withCount('likers')
-        ->where('post_id', $this->post->id)
-        ->paginate($this->amount);
-        // $comments = $this->post->comments->paginate($this->amount);
+        // ->where('post_id', $this->post->id)
+        // ->paginate($this->amount);
+        $comments = $this->post->comments()->paginate($this->amount);
 
         // $freshPost = $this->post->fresh();
         // $this->setState();

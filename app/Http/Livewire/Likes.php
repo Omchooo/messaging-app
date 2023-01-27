@@ -47,7 +47,7 @@ class Likes extends Component
         // $likesCount = $this->type->likers_count;
         // dump($this->type);
         // dump($likesCount);
-        return $this->type->fresh()->likers->count();
+        return $this->type->fresh()->likers()->count();
     }
 
     public function render()
