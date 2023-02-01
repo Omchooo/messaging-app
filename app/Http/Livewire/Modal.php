@@ -7,45 +7,36 @@ use Livewire\Component;
 
 class Modal extends Component
 {
-    public $amount = 3;
     public $post;
-    public $state = 'hidden';
+    // public $state = 'hidden';
+    public $showComponent = false;
 
-    public function loadMore()
+    public function showComponent()
     {
-        $this->amount += 3;
-    }
-
-    public function setState()
-    {
-        if ($this->state == 'flex' || $this->state == '') {
-            $this->state = 'hidden';
-        } else {
-            $this->state = 'flex';
+        if ($this->showComponent) {
+            $this->showComponent = false;
+        }
+        else {
+        $this->showComponent = true;
         }
     }
 
+    // public function setState()
+    // {
+    //     if ($this->state == 'flex' || $this->state == '') {
+    //         $this->state = 'hidden';
+    //     } else {
+    //         $this->state = 'flex';
+    //     }
+    // }
 
     public function render()
     {
-        // if ($this->state == 'fixed') {
-        //     $comments = $this->post->comments->paginate($this->amount);
+        // $commentsCount = $this->post->comments->count();
 
-        //     return view('livewire.modal', compact('comments', 'modalState'));
-        // }
-
-        // $comments = Comment::latest()
-        // ->withCount('likers')
-        // ->where('post_id', $this->post->id)
-        // ->paginate($this->amount);
-        $comments = $this->post->comments()->paginate($this->amount);
-
-        // $freshPost = $this->post->fresh();
-        // $this->setState();
-        // $modalState = $this->state;
-        $text = '';
-
-
-        return view('livewire.modal', compact('comments', 'text'));
+        return view('livewire.modal', [
+            'showComponent' => $this->showComponent,
+            'commentsCount' => $this->post->comments()->count(),
+        ]);
     }
 }

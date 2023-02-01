@@ -27,10 +27,10 @@ class Likes extends Component
     {
         $this->getType();
         if (Auth::user()->hasLiked($this->type)) {
-            $this->likeColor = '#ed4956';
+            return '#ed4956';
         }
         else {
-            $this->likeColor = '#8e8e8e';
+            return '#8e8e8e';
         }
     }
 
@@ -38,6 +38,7 @@ class Likes extends Component
     {
         $this->getType();
         // $this->getColor();
+        // return Auth::user()->toggleLike($this->type);
         return Auth::user()->toggleLike($this->type);
     }
 
@@ -47,14 +48,14 @@ class Likes extends Component
         // $likesCount = $this->type->likers_count;
         // dump($this->type);
         // dump($likesCount);
+        // return $this->type->fresh()->likers()->count();
         return $this->type->fresh()->likers()->count();
     }
 
     public function render()
     {
-        // $this->getType();
-        $this->getColor();
-        $color = $this->likeColor;
+        $this->getType();
+        $color = $this->getColor();
         $likes = $this->getLikes();
 
         return view('livewire.likes', compact('color', 'likes'));

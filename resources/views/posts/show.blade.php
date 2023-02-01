@@ -95,7 +95,6 @@
                 <div class="flex flex-col mx-3">
                     <div class="flex">
                         <livewire:likes :post="$post">
-                            </form>
                             {{-- <div class="btn btn-circle btn-sm btn-link">
                             <svg height="24px" width="24px" fill="#8e8e8e" color="#8e8e8e" viewBox="0 0 24 24">
                                 <path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" fill="none"
