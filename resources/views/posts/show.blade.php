@@ -127,10 +127,10 @@
     </div>
 
 
-    <script>
+    {{-- <script>
         $("form").submit(function() {
             $.post($(this).attr("action"), $(this).serialize());
             return false;
         });
-    </script>
+    </script> --}}
 @endsection

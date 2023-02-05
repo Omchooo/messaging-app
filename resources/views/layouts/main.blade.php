@@ -17,15 +17,18 @@
         <div class="flex flex-col items-center">
             <div class="container mx-auto max-w-5xl my-5">
                 <div class="navbar bg-base-200 shadow-xl rounded-box border border-gray-600">
+                    @auth
                     <div class="flex-none">
                         <div class="indicator">
                             <span class="indicator-item badge badge-secondary">99+</span>
                             <a href="{{ route('inbox.index') }}" class="btn btn-outline btn-sm">inbox</a>
                         </div>
                     </div>
+                    @endauth
                     <div class="flex-1 justify-center">
-                        <a href="{{ route('home') }}" class="btn btn-ghost normal-case text-xl">InstaByte</a>
+                        <a href="{{ route('home') }}" class="btn glass normal-case text-xl">InstaByte</a>
                     </div>
+                    @auth
                     <div class="flex-none">
                         <div class="dropdown dropdown-end">
                             <label tabindex="0" class="btn btn-ghost btn-circle avatar">
@@ -53,6 +56,7 @@
                             </ul>
                         </div>
                     </div>
+                    @endauth
                 </div>
             </div>
 

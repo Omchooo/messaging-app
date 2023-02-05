@@ -20,22 +20,16 @@
 
         <div class="divider"></div>
 
-        <div class="max-w-5xl w-full flex flex-col items-center">
-            <div class="tabs my-8">
-                <a class="tab tab-bordered tab-active">Posts</a>
-                <a class="tab tab-bordered">Liked</a>
-                <a class="tab tab-bordered">Deleted</a>
-            </div>
-            <div class="max-w-5xl w-full" >
-                {{-- @if (isset($posts)) --}}
-                    <livewire:posts :user="$user">
+        <div class="max-w-5xl w-full">
+            <livewire:tabs>
+            {{-- @if (isset($posts)) --}}
+            <livewire:posts :user="$user" >
 
-                {{-- @else
-                    <div class="flex justify-center w-full">
-                        <span>This user has no posts</span>
-                    </div>
-                @endif --}}
+        {{-- @else
+            <div class="flex justify-center w-full">
+                <span>This user has no posts</span>
             </div>
+        @endif --}}
         </div>
     </div>
 

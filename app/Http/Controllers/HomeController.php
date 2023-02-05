@@ -20,7 +20,7 @@ class HomeController extends Controller
             // ->with('media')
             // ->withCount('comments')
             // ->with('likers')
-            ->paginate(6);
+            ->get();
             // $posts = auth()->user()->posts()->get();
             // $posts = Post::paginate(6);
             // dump([$users, $posts]);
