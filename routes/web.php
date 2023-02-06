@@ -6,6 +6,7 @@ use App\Http\Controllers\InboxController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ViewController;
+use App\Http\Livewire\Home;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    // Route::get('/', Home::class)->name('home');
 
     Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
 

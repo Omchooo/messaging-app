@@ -15,12 +15,12 @@ class HomeController extends Controller
         // try {
             // DB::enableQueryLog();
             // $users = User::where('is_public', 1)->get();
-            $posts = Post::latest()
+            // $posts = Post::latest()
             // ->with('user')
             // ->with('media')
             // ->withCount('comments')
             // ->with('likers')
-            ->get();
+            // ->paginate(6);
             // $posts = auth()->user()->posts()->get();
             // $posts = Post::paginate(6);
             // dump([$users, $posts]);
@@ -30,6 +30,6 @@ class HomeController extends Controller
         // }
 
 
-        return view('index', compact('posts'));
+        return view('index');
     }
 }

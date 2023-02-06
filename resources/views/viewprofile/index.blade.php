@@ -14,7 +14,11 @@
                 <span class="my-1 text-xl max-w-[90%] truncate">{{ '@' . $user->username }}</span>
                 <span
                     class="my-1 text-md max-w-[90%] break-all whitespace-pre-line">{{ $user->bio }}</span>
+                @if (auth()->user()->id === $user->id)
                 <div class="btn btn-info btn-lg btn-outline text-xs min-h-[2.5rem] h-10">manage</div> {{-- btn-neutral if following --}}
+                @else
+                <div class="btn btn-info btn-lg btn-outline text-xs min-h-[2.5rem] h-10">Follow</div>
+                @endif
             </div>
         </div>
 
@@ -23,7 +27,7 @@
         <div class="max-w-5xl w-full">
             <livewire:tabs>
             {{-- @if (isset($posts)) --}}
-            <livewire:posts :user="$user" >
+            <livewire:posts :user="$user">
 
         {{-- @else
             <div class="flex justify-center w-full">

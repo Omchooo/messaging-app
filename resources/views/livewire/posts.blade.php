@@ -1,5 +1,5 @@
 <div class="max-w-5xl w-full">
-    {{ $state }}
+    {{-- {{ $state }} --}}
     <div class="gap-8 flex flex-wrap ">
         @isset($posts)
             @foreach ($posts as $post)
@@ -10,9 +10,31 @@
                     </picture>
                 </a>
             @endforeach
-            @if ($posts->hasMorePages())
+            <div x-data="{
+                loading: false,
+                observe() {
+                    let observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                this.loading = true;
+                                @this.call('loadMore')
+                                    .then(() => {
+                                        this.loading = false;
+                                    });
+                            }
+                        })
+                    }, {
+                        root: null
+                    })
+
+                    observer.observe(this.$el)
+                }
+            }" x-init="observe">
+                <button class="btn loading w-full" x-bind:class="{ 'hidden': !loading }">loading</button>
+            </div>
+            {{-- @if ($posts->hasMorePages())
                 <button wire:click="loadMore" class="btn btn-info btn-outline">Load more</button>
-            @endif
+            @endif --}}
         @endisset
 
 
@@ -27,6 +49,29 @@
                     </a>
                 @endif
             @endforeach
+            <div x-data="{
+                loading: false,
+                observe() {
+                    let observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                this.loading = true;
+                                @this.call('loadMore')
+                                    .then(() => {
+                                        this.loading = false;
+                                    });
+                            }
+                        })
+                    }, {
+                        root: null
+                    })
+
+                    observer.observe(this.$el)
+                }
+            }" x-init="observe">
+                <button class="btn loading w-full" x-bind:class="{ 'hidden': !loading }">loading</button>
+            </div>
+
             {{-- @if ($likedPosts->hasMorePages())
                 <button wire:click="loadMore" class="btn btn-info btn-outline">Load more</button>
             @endif --}}
