@@ -20,7 +20,7 @@
 
                     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
                         @csrf
-                        @method('put')
+                        @method('patch')
 
                         {{-- username --}}
                         <div class="form-control w-full max-w-xs mt-4">
@@ -59,7 +59,7 @@
 
                     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
                         @csrf
-                        @method('patch')
+                        @method('put')
 
                         {{-- current password --}}
                         <div class="form-control w-full max-w-xs mt-4">
