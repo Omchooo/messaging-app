@@ -20,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+// Route::get('/settings2', function () {
+//     return view('settings2');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');

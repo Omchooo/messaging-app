@@ -15,7 +15,7 @@
                         <input type="text" placeholder="Type here" name="full_name" id="full_name"
                             class="input input-md input-bordered w-full max-w-xs" />
                     </div> --}}
-                    {{-- username --}}
+                    {{-- email --}}
                     <div class="form-control w-full max-w-xs mt-3">
                         <label class="label pt-0">
                             <span class="label-text">Email</span>
