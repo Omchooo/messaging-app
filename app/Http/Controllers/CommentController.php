@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function store(CommentRequest $request)
-    {
-        Comment::create($request->getData());
-        // dump($request->getData());
-        // dump(request()->query('post'));
-        return back();
-    }
+    // public function store(CommentRequest $request)
+    // {
+    //     Comment::create($request->getData());
+    //     // dump($request->getData());
+    //     // dump(request()->query('post'));
+    //     return back();
+    // }
 }
