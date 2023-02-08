@@ -24,15 +24,18 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'comment' => 'required|string',
+            'comment' => 'required|string|min:1|max:255',
+            'user_id' => 'required'
         ];
     }
 
     public function getData()
     {
         $data = $this->validated() + [
-            'user_id' => $this->user()->id,
-            'post_id' => $this->query('post'),
+            'comment' => $this->comment,
+            'post_id' => $this->post_id,
+            'user_id' => auth()->id(),
+            // 'post_id' => $this->$postId,
         ];
 
         return $data;
