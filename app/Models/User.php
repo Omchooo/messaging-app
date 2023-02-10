@@ -8,10 +8,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Overtrue\LaravelLike\Traits\Liker;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable, Liker;
+    use HasApiTokens, HasFactory, Notifiable, Liker, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -54,5 +58,12 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('avatar')
+            ->performOnCollections('profile')
+            ->fit(Manipulations::FIT_CROP, 100, 100)
+            // ->crop(Manipulations::CROP_CENTER, 50, 50)
+            ->nonQueued();
+    }
 }

@@ -26,7 +26,7 @@ class Home extends Component
 
     public function loadMore()
     {
-        $this->amount += 6;
+        $this->amount += 2;
     }
 
 

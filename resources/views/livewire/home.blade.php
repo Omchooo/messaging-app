@@ -6,7 +6,11 @@
                     <div class="flex items-center justify-between my-2 mx-2">
                         <div class="avatar items-center">
                             <div class="w-10 rounded-full">
-                                <img src="https://placeimg.com/192/192/people" />
+                                @if ($post->user->getFirstMediaUrl('profile', 'avatar'))
+                                    <img src="{{ $post->user->getFirstMediaUrl('profile', 'avatar') }}" />
+                                @else
+                                    <img src="https://placeimg.com/192/192/people" />
+                                @endif
                             </div>
                             <span class="mx-2"><a
                                     href="{{ route('viewprofile.index', $post->user) }}">{{ $post->user->username }}</a></span>
@@ -19,11 +23,11 @@
                     <div class="flex flex-col mx-3">
                         <livewire:likes :post="$post" :wire:key="time().$post->id" />
                         {{-- <span>{{ $post->likers_count }} likes</span> --}}
-                        <livewire:modal :post="$post" :wire:key="$post->id" />
+                        <livewire:modal :post="$post" :wire:key="uniqid().time()" />
                         <span class="text-xs my-1">{{ $post->created_at->diffForHumans() }}</span>
                     </div>
                     <div class="divider my-1"></div>
-                    <livewire:add-comment :post_id="$post->id">
+                    <livewire:add-comment :post_id="$post->id" :wire:key="uniqid()">
                 </div>
             @endif
         @endforeach

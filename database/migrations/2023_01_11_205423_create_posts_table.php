@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('desc')->nullable();
             // $table->string('image');
             // $table->string('dimension');
-            $table->unsignedInteger('likes')->default(0);
+            // $table->unsignedInteger('likes')->default(0);
             // $table->boolean('is_public')->default(true);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

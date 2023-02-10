@@ -10,7 +10,11 @@
                 <div class="flex items-center justify-between mt-2 mx-2">
                     <div class="avatar items-center">
                         <div class="w-10 rounded-full">
-                            <img src="https://placeimg.com/192/192/people" />
+                            @if ($post->user->getFirstMediaUrl('profile', 'avatar'))
+                                <img src="{{ $post->user->getFirstMediaUrl('profile', 'avatar') }}" />
+                            @else
+                                <img src="https://placeimg.com/192/192/people" />
+                            @endif
                         </div>
                         <span class="mx-2">{{ $post->user->username }}</span>
                     </div>
@@ -21,7 +25,11 @@
                     @isset($post->desc)
                         <div class="avatar items-center">
                             <div class="w-10 rounded-full">
-                                <img src="https://placeimg.com/192/192/people" />
+                                @if ($post->user->getFirstMediaUrl('profile', 'avatar'))
+                                    <img src="{{ $post->user->getFirstMediaUrl('profile', 'avatar') }}" />
+                                @else
+                                    <img src="https://placeimg.com/192/192/people" />
+                                @endif
                             </div>
                             <span class="mx-2 truncate max-w-[7.5rem]">{{ $post->user->username }} - </span>
 
@@ -38,7 +46,11 @@
                                     <div class="h-full">
                                         <div class="avatar">
                                             <div class="w-10 rounded-full">
-                                                <img src="https://placeimg.com/192/192/people" />
+                                                @if ($comment->user->getFirstMediaUrl('profile', 'avatar'))
+                                                    <img src="{{ $comment->user->getFirstMediaUrl('profile', 'avatar') }}" />
+                                                @else
+                                                    <img src="https://placeimg.com/192/192/people" />
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

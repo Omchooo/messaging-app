@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="">
 
 <head>
     <meta charset="utf-8">
@@ -22,8 +22,10 @@
                     @auth
                         @if (request()->is('profile'))
                             <label for="my-drawer-2" class="btn btn-outline btn-sm drawer-button lg:hidden">
-                                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block h-5 w-5 stroke-current md:h-6 md:w-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" class="inline-block h-5 w-5 stroke-current md:h-6 md:w-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 6h16M4 12h16M4 18h16"></path>
                                 </svg>
                             </label>
                         @else
@@ -36,14 +38,18 @@
                         @endif
                     @endauth
                     <div class="flex-1 justify-center">
-                        <a href="{{ route('home') }}" class="btn glass normal-case text-xl">InstaByte</a>
+                        <a href="{{ route('home') }}" class="btn btn-outline normal-case text-xl">InstaByte</a>
                     </div>
                     @auth
                         <div class="flex-none">
                             <div class="dropdown dropdown-end">
                                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                                     <div class="w-12 rounded-full">
-                                        <img src="https://placeimg.com/192/192/people" />
+                                        @if (auth()->user()->getFirstMediaUrl('profile', 'avatar'))
+                                            <img src="{{ auth()->user()->getFirstMediaUrl('profile', 'avatar') }}" />
+                                        @else
+                                            <img src="https://placeimg.com/192/192/people" />
+                                        @endif
                                     </div>
                                 </label>
                                 <ul tabindex="0"

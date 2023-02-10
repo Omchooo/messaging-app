@@ -3,36 +3,56 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Spatie\Image\Manipulations;
+use Spatie\Image\Image;
 
 class Drawer extends Component
 {
+    use WithFileUploads;
+
     public $user;
-    public $toggleTab = 3;
+    public $toggleTab = 1;
+    public $image;
 
     public function render()
     {
+
         return view('livewire.drawer');
     }
 
     public function changeTab($value)
     {
         $this->toggleTab = $value;
-        // if ($value == 1) {
-        //     $this->editprofile = 1;
-        //     $this->mngfollowers = $this->mngaccount = $this->bugreport = 0;
+    }
 
-        // } elseif ($value == 2) {
-        //     $this->mngfollowers = 1;
-        //     $this->editprofile = $this->mngaccount = $this->bugreport = 0;
+    public function uploadImage()
+    {
+        $this->validate([
+            'image' => 'image'
+        ]);
 
-        // } elseif ($value == 3) {
-        //     $this->mngaccount == 1;
-        //     $this->editprofile = $this->mngfollowers = $this->bugreport = 0;
+        if ($this->user->getFirstMediaUrl('profile')) {
+        $this->user->clearMediaCollection('profile'); //delete previous image
 
-        // } elseif ($value == 4) {
-        //     $this->bugreport == 1;
-        //     $this->editprofile = $this->mngaccount = $this->mngfollowers = 0;
-        // }
+        }
 
+
+        // Image::load($this->image)->fit(Manipulations::FIT_CROP, 50, 50)->format(Manipulations::FORMAT_PNG)->save();
+        // $this->image->crop(Manipulations::CROP_CENTER, 50, 50);
+        $this->user->addMedia($this->image)->toMediaCollection('profile');
+
+        // $this->image = $this->user->getFirstMediaUrl('profile');
+
+        if ($this->image) {
+            // $this->image = null;
+            request()->session()->flash('status', 'Successfully uploaded');
+        }
+
+
+        // dump($this->validated());
+        // $post = $request->getData();
+        // dump($request->getData());
+        // return redirect()->route('posts.create')->with('message', 'Post has been successfully published');
     }
 }
