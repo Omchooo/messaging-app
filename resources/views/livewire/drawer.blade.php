@@ -1,4 +1,4 @@
-<div class="drawer drawer-mobile rounded max-h-[35rem]">
+<div class="drawer drawer-mobile rounded max-h-[44rem]">
     <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content flex flex-col items-center space-y-10 py-10 bg-base-300 overflow-y-auto">
         <!-- Page content here -->

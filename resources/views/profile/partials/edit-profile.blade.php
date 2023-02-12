@@ -26,11 +26,11 @@
     @endif
 
     <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+        <h2 class="text-lg font-medium">
             Edit Profile
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        <p class="mt-1 text-sm">
             Edit your account's profile by your preferences.
         </p>
 
@@ -78,12 +78,50 @@
 
                 {{-- <img src="https://placeimg.com/400/600/arch" alt="Shoes" class="aspect-9/16" /> --}}
             </figure>
-
         </div>
 
 
         <button class="btn btn-outline btn-sm" type="submit">Save</button>
-
     </form>
+
+
+</div>
+
+<div class="w-11/12 bg-base-200 p-4">
+    {{-- Theme picker --}}
+    <div class="form-control w-full max-w-xs mt-4">
+        <label class="label pt-0">
+            <span class="label-text">Select theme:
+                @if ($theme == 'valentine')
+                <span class="badge badge-sm">LIMITED TIME</span>
+                @endif
+            </span>
+        </label>
+
+
+        <select class="select select-bordered w-full max-w-xs" wire:model='theme' onchange="saveToLocalStorage(event)">
+            <option value="auto">Same as Browser</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="night">Night</option>
+            <option value="cupcake">Cupcake</option>
+            <option value="valentine">Valentine
+            </option>
+        </select>
+        {{-- <span>{{ $theme }}</span> --}}
+        <script>
+            function saveToLocalStorage(event) {
+                const theme = event.target.value;
+                localStorage.setItem('theme', theme);
+                window.location.reload();
+            }
+
+            document.addEventListener('livewire:load', function() {
+                // Set the value of the "theme" property
+                @this.theme = localStorage.getItem('theme')
+            })
+        </script>
+        {{-- </div> --}}
+    </div>
 
 </div>

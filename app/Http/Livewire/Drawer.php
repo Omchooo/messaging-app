@@ -14,6 +14,7 @@ class Drawer extends Component
     public $user;
     public $toggleTab = 1;
     public $image;
+    public $theme;
 
     public function render()
     {

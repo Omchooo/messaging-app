@@ -7,8 +7,17 @@
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
         crossorigin="anonymous"></script>
     @vite('resources/css/app.css')
+    {{-- @vite('resources/js/app.js') --}}
+    <script>
+        // document.addEventListener('DOMContentLoaded', function() {
+        // var htmlElement = document.querySelector("html");
+        document.querySelector("html").setAttribute("data-theme", localStorage.getItem("theme"));
+        // });
+    </script>
     @livewireStyles
     <script src="//unpkg.com/alpinejs" defer></script>
+
+
 
     <title>Laravel</title>
 
@@ -57,7 +66,6 @@
                                     <li>
                                         <a href="{{ route('viewprofile.index', Auth::user()) }}" class="justify-between">
                                             Profile
-                                            <span class="badge">New</span>
                                         </a>
                                     </li>
                                     <li><a href="{{ route('profile.edit') }}">Settings</a></li>
