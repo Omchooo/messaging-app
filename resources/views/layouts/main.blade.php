@@ -4,16 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-toke" content="{{ csrf_token() }}">
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
         crossorigin="anonymous"></script>
     @vite('resources/css/app.css')
-    {{-- @vite('resources/js/app.js') --}}
+
+    @auth
     <script>
         // document.addEventListener('DOMContentLoaded', function() {
         // var htmlElement = document.querySelector("html");
         document.querySelector("html").setAttribute("data-theme", localStorage.getItem("theme"));
         // });
     </script>
+    @endauth
+
     @livewireStyles
     <script src="//unpkg.com/alpinejs" defer></script>
 
@@ -40,7 +44,7 @@
                         @else
                             <div class="flex-none">
                                 <div class="indicator">
-                                    <span class="indicator-item badge badge-secondary">99+</span>
+                                    <span class="indicator-item badge w-[7rem] badge-secondary">Coming Soon</span>
                                     <a href="{{ route('inbox.index') }}" class="btn btn-outline btn-sm">inbox</a>
                                 </div>
                             </div>
@@ -125,6 +129,8 @@
         </footer>
     </div>
 
+    {{-- @vite('resources/css/app.css') --}}
+    <script src="{{ asset('js/app.js') }}"></script>
     @livewireScripts
 </body>
 

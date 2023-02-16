@@ -3,7 +3,9 @@
     <div class="drawer-content flex flex-col items-center space-y-10 py-10 bg-base-300 overflow-y-auto">
         <!-- Page content here -->
         @includeWhen($toggleTab == 1, 'profile.partials.edit-profile', ['user' => $user])
+        @includeWhen($toggleTab == 2, 'profile.partials.manage-followers', ['user' => $user])
         @includeWhen($toggleTab == 3, 'profile.partials.manage-account', ['user' => $user])
+        @includeWhen($toggleTab == 4, 'profile.partials.bug-report')
     </div>
     <div class="drawer-side">
         <label for="my-drawer-2" class="drawer-overlay"></label>
