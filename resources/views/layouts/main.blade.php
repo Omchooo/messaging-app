@@ -4,18 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-toke" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
         crossorigin="anonymous"></script>
+    @vite('resources/js/app.js')
     @vite('resources/css/app.css')
 
+
     @auth
-    <script>
-        // document.addEventListener('DOMContentLoaded', function() {
-        // var htmlElement = document.querySelector("html");
-        document.querySelector("html").setAttribute("data-theme", localStorage.getItem("theme"));
-        // });
-    </script>
+        <script>
+            // document.addEventListener('DOMContentLoaded', function() {
+            // var htmlElement = document.querySelector("html");
+            document.querySelector("html").setAttribute("data-theme", localStorage.getItem("theme"));
+            // });
+        </script>
     @endauth
 
     @livewireStyles
@@ -128,9 +130,8 @@
             </div>
         </footer>
     </div>
-
-    {{-- @vite('resources/css/app.css') --}}
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('resources\js\app.js') }}"></script> --}}
+    @stack('scripts')
     @livewireScripts
 </body>
 

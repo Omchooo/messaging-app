@@ -4,11 +4,14 @@
     <div class="container mx-auto my-5 flex justify-center">
         <div class="flex-row card bg-base-200 rounded-none h-[48rem]">
             <div class="w-80 my-4 ml-4 overflow-y-auto">
+                <ul id="users">
+                    <li>test1</li>
+                </ul>
                 {{-- contacts --}}
-                <div class=" w-72">
+                <div class="w-72">
                     <div class="flex items-center justify-between mt-2">
-                        <div class="avatar items-center">
-                            <div class=" w-14 rounded-full">
+                        <div class="avatar items-center hover:cursor-pointer">
+                            <div class="w-14 rounded-full" id="profile">
                                 <img src="https://placeimg.com/192/192/people" />
                             </div>
                             <span class="mx-2 text-xl w-56 truncate">usernameeeeeeeeeeeeeeeeeeeeeeeeeee</span>
@@ -88,4 +91,30 @@
             </div>
         </div>
     </div>
+
+    @push('scripts')
+        <script>
+            window.onload = function() {
+                const usersElement = document.getElementById('users');
+                const messagesElement = document.getElementById('messages');
+                // let isOnline = document.getElementById('profile')
+
+                Echo.join('chat')
+                    .here((users) => {
+                        users.forEach((user) => {
+                            let element = document.createElement('li');
+
+                            element.setAttribute('id', user.id);
+                            element.innerText = user.name;
+                            // isOnline.classList.remove('offline');
+                            // isOnline.classList.add('online');
+
+                            usersElement.appendChild(element);
+                        });
+                    })
+                    .joining()
+                    .leaving()
+            }
+        </script>
+    @endpush
 @endsection
