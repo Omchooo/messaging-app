@@ -53,6 +53,7 @@
             <pre data-prefix=">" class="text-warning"><code>loading web page</code></pre>
             <pre data-prefix=">" class="text-success"><code>successfully loaded, please login</code></pre>
             <x-input-error :messages="$errors" />
+            <br/>
             <pre data-prefix=">" class="text-info"><code><a href="{{ url('/register') }}">don't have an account?</a></code></pre>
         </div>
     </div>

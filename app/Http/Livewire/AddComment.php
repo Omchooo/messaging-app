@@ -25,15 +25,15 @@ class AddComment extends Component
 
     public function postComment()
     {
-        $validatedData = Validator::make([
-            'comment' => $this->comment,
-            'user_id' => auth()->id(),
-            'post_id' => $this->post_id,
-        ], [
-            'comment' => 'required|string|min:1|max:255',
-            'user_id' => 'required|numeric',
-            'post_id' => 'required|numeric',
-        ]);
+        // $validatedData = Validator::make([
+        //     'comment' => $this->comment,
+        //     'user_id' => auth()->id(),
+        //     'post_id' => $this->post_id,
+        // ], [
+        //     'comment' => 'required|string|min:1|max:255',
+        //     'user_id' => 'required|numeric',
+        //     'post_id' => 'required|numeric',
+        // ]);
 
         // if ($validatedData->fails()) {
         //     $this->emit('commentValidationFailed', $validatedData->errors());
@@ -47,25 +47,6 @@ class AddComment extends Component
     ]);
 
         $this->comment = '';
-
-        // $validatedData = $request->getData();
-        // Comment::create($validatedData  + ['post_id' => $postId]);
-        // $this->comment = '';
-        // try {
-        //     Comment::create($validatedData  + ['post_id' => $postId]);
-        // } catch (\Exception $e) {
-        //     dd($e->getMessage());
-        // }
-        // dd(['post_id' => $this->$postId]);
-        // dump(request()->query('post'));
-        // return back();
-
-
-        // $validatedData = $this->validate([
-        //     'comment' => 'required|min:5',
-        // ]);
-
-
     }
 }
 

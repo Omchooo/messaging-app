@@ -6,6 +6,7 @@ use App\Http\Controllers\InboxController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ViewController;
+use App\Http\Livewire\Chat;
 use App\Http\Livewire\Home;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,8 @@ Route::middleware('auth')->group(function () {
     // Route::get('/', Home::class)->name('home');
 
     Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
+    Route::post('/inbox/message', [Chat::class, 'messageReceived'])->name('inbox.message');
+    Route::post('/inbox/greet/{user}', [InboxController::class, 'greetReceived'])->name('inbox.greet');
 
     // //ProfileController already taken by breeze
     Route::get('/user/{user:username}', [ViewController::class, 'index'])->name('viewprofile.index');

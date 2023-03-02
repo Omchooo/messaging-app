@@ -13,6 +13,7 @@
             <x-input-error :messages="$errors->get('email')" />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" /> --}}
+            <br/>
             <pre data-prefix=">" class="text-info"><code><a href="{{ url('/login') }}">already have an account?</a></code></pre>
         </div>
 
