@@ -12,16 +12,8 @@
                 </div>
                 <span class="my-1 text-2xl max-w-[90%] break-all">{{ $user->full_name }}</span>
                 <span class="my-1 text-xl max-w-[90%] truncate">{{ '@' . $user->username }}</span>
-                <span
-                    class="my-1 text-md max-w-[90%] break-all whitespace-pre-line">{{ $user->bio }}</span>
-                @if (auth()->user()->id === $user->id)
-                <div class="btn btn-info btn-lg btn-outline text-xs min-h-[2.5rem] h-10">manage</div> {{-- btn-neutral if following --}}
-                @else
-                <div class="flex gap-2">
-                    <div class="btn btn-info btn-lg btn-outline text-xs min-h-[2.5rem] h-10">follow</div>
-                    <div class="btn btn-ghost btn-lg btn-outline text-xs min-h-[2.5rem] h-10">message</div>
-                </div>
-                @endif
+                <span class="my-1 text-md max-w-[90%] break-all whitespace-pre-line">{{ $user->bio }}</span>
+                <livewire:has-chat :user='$user' :wire:key="uniqid()">
             </div>
         </div>
 

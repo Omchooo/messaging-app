@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Livewire\Component;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class OnlineChatUsers extends Component
 {
     public $users;
-    public $user;
+    public $allUsers;
 
     public function render()
     {
@@ -20,12 +22,16 @@ class OnlineChatUsers extends Component
 
     public function getListeners()
     {
-        return [
-            "echo-presence:chat,here" => 'currentOnlineUsers',
-            "echo-presence:chat,joining" => 'joiningOnlineUsers',
-            "echo-presence:chat,leaving" => 'leavingOnlineUsers',
-        ];
+        // return [
+        //     "echo-presence:chat,here" => 'currentOnlineUsers',
+        //     "echo-presence:chat,joining" => 'joiningOnlineUsers',
+        //     "echo-presence:chat,leaving" => 'leavingOnlineUsers',
+
+        // ];
     }
+
+
+    //-----------------------------stari kod ispod--------------------------------
 
     public function currentOnlineUsers($event)
     {
@@ -34,9 +40,18 @@ class OnlineChatUsers extends Component
         //     'id' => $event['id'],
         //      'status' => 1, //online
         // ];
+        // $media = Media::where('model_id', $userId)
+        //     ->where('model_type', Post::class)
+        //     ->first();
+
+        // $existingUsersId = array_column($event, 'id');
+        // dump(array_values($existingUsersId));
+        // $this->users = User::Where('id', $existingUsersId);
+
         $this->users = $event;
 
         // dump($event);
+        // dump($this->users);
     }
 
     public function joiningOnlineUsers($event)
@@ -59,8 +74,8 @@ class OnlineChatUsers extends Component
 
         // $existingUsersId = array_column($this->users, 'id');
         // if (in_array($event['id'], $existingUsersId)) {
-            // $this->users[] = $event;
-            // dump($this->users[] = $event);
+        // $this->users[] = $event;
+        // dump($this->users[] = $event);
         // }
         $existingUsersId = array_column($this->users, 'id');
         $key = array_search($event['id'], $existingUsersId);

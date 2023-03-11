@@ -15,7 +15,7 @@ class MessageSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
+    public $sender;
     public $message;
 
     /**
@@ -23,9 +23,9 @@ class MessageSent implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct($user, $message)
+    public function __construct($sender, $message)
     {
-        $this->user = $user;
+        $this->sender = $sender;
         $this->message = $message;
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chat;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -9,74 +10,88 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
-    public function index()
-    {
-        $users = Auth::user()->chattedWith()->get();
 
-        $onlineUsers = User::where('id', '!=', Auth::id())
-            ->where('is_online', true)
-            ->get();
+    // function getOrCreateChatRoom(User $user1, User $user2) {
+    //     $chat = Chat::whereHas('users', function ($query) use ($user1, $user2) {
+    //         $query->whereIn('user_id', [$user1->id, $user2->id])->groupBy('chat_id')->havingRaw('COUNT(DISTINCT user_id) = 2');
+    //     })->first();
 
-        return view('messages.index', compact('users', 'onlineUsers'));
-    }
+    //     if (!$chat) {
+    //         $chat = Chat::create();
+    //         $chat->users()->attach([$user1->id, $user2->id]);
+    //     }
 
-    public function chat(User $user)
-    {
-        $messages = $this->getMessages($user->id);
+    //     return $chat;
+    // }
 
-        return view('messages.chat', compact('user', 'messages'));
-    }
+    // public function index()
+    // {
+    //     $users = Auth::user()->chattedWith()->get();
 
-    public function getMessages($userId)
-    {
-        return Message::where(function ($query) use ($userId) {
-                $query->where('from_user_id', Auth::id())
-                      ->where('to_user_id', $userId);
-            })
-            ->orWhere(function ($query) use ($userId) {
-                $query->where('from_user_id', $userId)
-                      ->where('to_user_id', Auth::id());
-            })
-            ->orderBy('created_at', 'desc')
-            ->limit(10)
-            ->get()
-            ->reverse();
-    }
+    //     $onlineUsers = User::where('id', '!=', Auth::id())
+    //         ->where('is_online', true)
+    //         ->get();
 
-    public function sendMessage(User $user, Request $request)
-    {
-        $request->validate([
-            'body' => 'required'
-        ]);
+    //     return view('messages.index', compact('users', 'onlineUsers'));
+    // }
 
-        $message = Message::create([
-            'from_user_id' => Auth::id(),
-            'to_user_id' => $user->id,
-            'body' => $request->body
-        ]);
+    // public function chat(User $user)
+    // {
+    //     $messages = $this->getMessages($user->id);
 
-        broadcast(new MessageSent($message))->toOthers();
+    //     return view('messages.chat', compact('user', 'messages'));
+    // }
 
-        return response()->json(['status' => 'Message sent!']);
-    }
+    // public function getMessages($userId)
+    // {
+    //     return Message::where(function ($query) use ($userId) {
+    //             $query->where('from_user_id', Auth::id())
+    //                   ->where('to_user_id', $userId);
+    //         })
+    //         ->orWhere(function ($query) use ($userId) {
+    //             $query->where('from_user_id', $userId)
+    //                   ->where('to_user_id', Auth::id());
+    //         })
+    //         ->orderBy('created_at', 'desc')
+    //         ->limit(10)
+    //         ->get()
+    //         ->reverse();
+    // }
 
-    public function chattedWith()
-    {
-        $messages = Message::where('from_user_id', auth()->id())
-                ->orWhere('to_user_id', auth()->id())
-                ->orderByDesc('created_at')
-                ->get();
+    // public function sendMessage(User $user, Request $request)
+    // {
+    //     $request->validate([
+    //         'body' => 'required'
+    //     ]);
 
-        $users = collect([]);
+    //     $message = Message::create([
+    //         'from_user_id' => Auth::id(),
+    //         'to_user_id' => $user->id,
+    //         'body' => $request->body
+    //     ]);
 
-        foreach ($messages as $message) {
-            $otherUser = $message->fromUser->id === auth()->id() ? $message->toUser : $message->fromUser;
+    //     broadcast(new MessageSent($message))->toOthers();
 
-            if (!$users->contains('id', $otherUser->id)) {
-                $users->push($otherUser);
-            }
-        }
+    //     return response()->json(['status' => 'Message sent!']);
+    // }
 
-        return $users;
-    }
+    // public function chattedWith()
+    // {
+    //     $messages = Message::where('from_user_id', auth()->id())
+    //             ->orWhere('to_user_id', auth()->id())
+    //             ->orderByDesc('created_at')
+    //             ->get();
+
+    //     $users = collect([]);
+
+    //     foreach ($messages as $message) {
+    //         $otherUser = $message->fromUser->id === auth()->id() ? $message->toUser : $message->fromUser;
+
+    //         if (!$users->contains('id', $otherUser->id)) {
+    //             $users->push($otherUser);
+    //         }
+    //     }
+
+    //     return $users;
+    // }
 }
