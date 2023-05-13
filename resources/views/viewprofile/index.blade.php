@@ -1,13 +1,12 @@
 @extends('layouts.main')
 
 @section('content')
-
     <div class="container mx-auto my-5 flex flex-col items-center max-w-5xl">
         <div class="card w-96 bg-base-200 border border-gray-600 shadow-xl">
             <div class="card-body flex flex-col items-center">
                 <div class="avatar items-center">
                     <div class="w-40">
-                        <img class="mask mask-squircle" src="https://placeimg.com/160/160/arch" />
+                        <img class="mask mask-squircle" src="{{ $user->getFirstMediaUrl('profile', 'avatar') }}" />
                     </div>
                 </div>
                 <span class="my-1 text-2xl max-w-[90%] break-all">{{ $user->full_name }}</span>
@@ -20,16 +19,17 @@
         <div class="divider"></div>
 
         <div class="max-w-5xl w-full">
-            <livewire:tabs>
+            @if ($user->id === auth()->user()->id)
+                <livewire:tabs>
+            @endif
             {{-- @if (isset($posts)) --}}
             <livewire:posts :user="$user">
 
-        {{-- @else
+                {{-- @else
             <div class="flex justify-center w-full">
                 <span>This user has no posts</span>
             </div>
         @endif --}}
         </div>
     </div>
-
 @endsection

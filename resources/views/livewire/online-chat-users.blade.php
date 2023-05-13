@@ -1,23 +1,25 @@
 <div>
     {{-- contacts --}}
     @if ($allUsers)
-    @foreach ($allUsers as $user)
-    <div class="w-72">
-        <div class="flex items-center justify-between mt-2">
-            <div class="avatar items-center hover:cursor-pointer">
-                <div class="w-14 rounded-full">
-                    @if ($user['userImage'])
-                    <img src="{{ $user['userImage'] }}" />
-                    @else
-                    <img src="https://placeimg.com/192/192/people" />
-                    @endif
+        @foreach ($allUsers as $user)
+            <a href="{{ route('inbox.chat', $user['chatUuid']) }}">
+                <div class="w-72">
+                    <div class="flex items-center justify-between mt-2">
+                        <div class="avatar items-center hover:cursor-pointer">
+                            <div class="w-14 rounded-full">
+                                @if ($user['userImage'])
+                                    <img src="{{ $user['userImage'] }}" />
+                                @else
+                                    <img src="https://placeimg.com/192/192/people" />
+                                @endif
+                            </div>
+                            <span class="mx-2 text-xl w-56 truncate">{{ $user['fullName'] ?? $user['userName'] }}</span>
+                        </div>
+                    </div>
                 </div>
-                <span class="mx-2 text-xl w-56 truncate">{{ $user['username'] }}</span>
-            </div>
-        </div>
-    </div>
-    <div class="divider my-1"></div>
-    @endforeach
+            </a>
+            <div class="divider my-1"></div>
+        @endforeach
     @else
         <h2>No users to show, get some friends first!</h2>
     @endif

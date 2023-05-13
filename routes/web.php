@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
     Route::get('/inbox/{uuid:chat}', Chat::class)->name('inbox.chat');
     Route::post('/inbox/message', [ChatInputField::class, 'messageReceived'])->name('inbox.message');
-    Route::post('/inbox/greet/{user}', [InboxController::class, 'greetReceived'])->name('inbox.greet');
+    Route::post('/inbox/greet/{user}', [InboxController::class, 'greetReceived'])->name('inbox.greet'); //to be removed
 
     // //ProfileController already taken by breeze
     Route::get('/user/{user:username}', [ViewController::class, 'index'])->name('viewprofile.index');

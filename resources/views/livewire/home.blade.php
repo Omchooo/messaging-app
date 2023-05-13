@@ -13,7 +13,7 @@
                                 @endif
                             </div>
                             <span class="mx-2"><a
-                                    href="{{ route('viewprofile.index', $post->user) }}">{{ $post->user->username }}</a></span>
+                                    href="{{ route('viewprofile.index', $post->user) }}">{{ $post->user->full_name ?? $post->user->username }}</a></span>
                         </div>
                         <div class="btn btn-info btn-xs btn-outline text-xs">follow</div> {{-- btn-neutral if following --}}
                     </div>

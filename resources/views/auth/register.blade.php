@@ -36,7 +36,7 @@
                             <span class="label-text">Full Name (optional)</span>
                         </label>
                         <input type="text" name="full_name" value="{{ old('full_name') }}"
-                            class="input input-md input-bordered w-full max-w-xs" autocomplete="full_name"/>
+                            class="input input-bordered w-full max-w-xs bg-base-100" autocomplete="full_name"/>
                     </div>
                     {{-- email --}}
                     <div class="form-control w-full max-w-xs mt-3">

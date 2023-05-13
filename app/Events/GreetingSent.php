@@ -36,7 +36,7 @@ class GreetingSent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        \Log::debug($this->message);
+        // \Log::debug($this->message);
 
         return new PrivateChannel("inbox.greet.{$this->user->id}");
     }

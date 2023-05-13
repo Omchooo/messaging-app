@@ -16,24 +16,25 @@
                 <div class="flex items-center justify-between mt-2 mx-2">
                     <div class="avatar items-center">
                         <div class="w-10 rounded-full">
-                            <img src="https://placeimg.com/192/192/people" />
+                            <img src="{{ $otherChatUser['userImage'] }}" />
                         </div>
-                        <span class="mx-2">username</span>
+                        <a href="{{ route('viewprofile.index', $otherChatUser['userName']) }}"><span class="mx-2">{{ $otherChatUser['fullName'] ?? $otherChatUser['userName'] }}</span></a>
                     </div>
                     <div class="btn btn-info btn-xs btn-outline text-xs">follow</div> {{-- btn-neutral if following --}}
                 </div>
                 <div class="divider my-0"></div>
-                <div class="mx-3 my-2 flex flex-col gap-4 h-full overflow-y-auto" style="overflow-anchor: none;">
+                {{-- <div class="mx-3 my-2 flex flex-col gap-4 h-full overflow-y-auto"> --}}
 
 
 
 
                     {{-- <li>{{ auth()->user()->id }}</li> --}}
-                <livewire:chat-messages :wire:key="'messages-'.uniqid()">
+                <livewire:chat-messages :wire:key="'messages-'.uniqid()" :chatId="$otherChatUser['chatId']">
+                {{-- </div> --}}
 
 
                 <div class="divider my-0"></div>
-                <livewire:chat-input-field :wire:key="'input-'.uniqid()">
+                <livewire:chat-input-field :wire:key="'input-'.uniqid()" :uuid="$uuid" :chatId="$otherChatUser['chatId']">
             </div>
         </div>
     </div>

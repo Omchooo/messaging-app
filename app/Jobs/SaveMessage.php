@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Events\MessageSent;
 use App\Models\Message;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -11,26 +10,22 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class BroadcastMessage implements ShouldQueue
+class SaveMessage implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    public $sender;
-    public $message;
-    public $chatId;
-
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($sender, $message, $chatId)
+    public function __construct($senderId, $message, $chatId)
     {
-        $this->sender = $sender;
-        $this->message = $message;
-        $this->chatId = $chatId;
-
+        Message::create([
+            'user_id' => $senderId,
+            'chat_id' => $chatId,
+            'text' => $message,
+        ]);
     }
 
     /**
@@ -40,8 +35,6 @@ class BroadcastMessage implements ShouldQueue
      */
     public function handle()
     {
-        // \Log::debug("{$this->sender->username}: {$this->message}, room id: {$this->chatId}");
-
-        broadcast(new MessageSent($this->sender, $this->message, $this->chatId));
+        //
     }
 }

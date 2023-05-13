@@ -17,16 +17,18 @@ class MessageSent implements ShouldBroadcast
 
     public $sender;
     public $message;
+    public $chatId;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($sender, $message)
+    public function __construct($sender, $message, $chatId)
     {
         $this->sender = $sender;
         $this->message = $message;
+        $this->chatId = $chatId;
     }
 
     /**
@@ -36,8 +38,8 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        // \Log::debug("{$this->user->username}: {$this->message}");
+        // \Log::debug("{$this->sender->username}: {$this->message}");
 
-        return new PresenceChannel('chat');
+        return new PrivateChannel("chat.{$this->chatId}");
     }
 }
