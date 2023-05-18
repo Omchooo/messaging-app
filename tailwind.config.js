@@ -24,6 +24,9 @@ module.exports = {
             width: {
                 '144': '36rem',
             },
+            fontSize: {
+                'xxs': '0.70rem',
+            }
         },
     },
 

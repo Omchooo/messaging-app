@@ -10,7 +10,7 @@
     </button>
     <span>{{ $likes }} {{ ($likes == 1) ? 'like' : 'likes' }}</span>
     @else
-        <button class="btn btn-circle btn-sm btn-link flex justify-center items-center" wire:click="setLike">
+        <button class="btn btn-xs btn-link" wire:click="setLike">
             <svg height="12px" width="12px" viewBox="0 0 24 24" fill="{{ $color }}"
                 color="{{ $color }}">{{-- ako je lajkano: #ed4956 --}}
                 <path

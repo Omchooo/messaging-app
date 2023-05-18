@@ -9,7 +9,7 @@
     </div>
     <div class="drawer-side">
         <label for="my-drawer-2" class="drawer-overlay"></label>
-        <ul class="p-4 w-80 bg-base-200 text-base-content flex flex-col justify-between">
+        <ul class="p-4 w-80 bg-base-200 text-base-content flex flex-col justify-between max-h-[44rem]">
             <!-- Sidebar content here -->
             <div class="gap-1 flex flex-col">
                 <li class="btn btn-ghost btn-outline btn-block no-animation rounded {{ $toggleTab == 1 ? 'btn-active' : '' }}"
