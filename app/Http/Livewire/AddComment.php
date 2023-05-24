@@ -13,15 +13,19 @@ class AddComment extends Component
     public $comment;
     public $post_id;
 
+    protected $rules = [
+        'comment' => 'required|min:1'
+    ];
+
     public function mount($post_id)
     {
         $this->post_id = $post_id;
     }
+
     public function render()
     {
         return view('livewire.add-comment');
     }
-
 
     public function postComment()
     {
@@ -39,6 +43,7 @@ class AddComment extends Component
         //     $this->emit('commentValidationFailed', $validatedData->errors());
         //     return;
         // }
+        $this->validate();
 
         Comment::create([
             'comment' => $this->comment,

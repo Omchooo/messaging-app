@@ -6,15 +6,13 @@ use Livewire\Component;
 
 class ShowModal extends Component
 {
-    public $amount = 3;
+    public $amount = 7;
     public $post;
 
     public function loadMore()
     {
-        $this->amount += 3;
+        $this->amount += 5;
     }
-
-
 
     public function render()
     {

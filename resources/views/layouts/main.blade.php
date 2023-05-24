@@ -7,9 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
         crossorigin="anonymous"></script>
+
     @vite('resources/js/app.js')
     @vite('resources/css/app.css')
-
 
     @auth
         <script>
@@ -21,7 +21,6 @@
     @endauth
 
     @livewireStyles
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     @stack('styles')
 

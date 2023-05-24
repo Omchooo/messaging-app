@@ -26,9 +26,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('settings2');
 // });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');

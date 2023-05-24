@@ -28,13 +28,15 @@ class PostController extends Controller
     {
         // dump($post->id);
         // $comments = $post->comments;
-        $comments = Comment::latest()
-        ->where('post_id', $post->id)
-        // ->with('likers')
-        ->paginate(6);
+
+        // $comments = Comment::latest()
+        // ->where('post_id', $post->id)
+        // // ->with('likers')
+        // ->paginate(6);
+
         // $post->fresh();
         // dump(request()->route('post'));
-        return view('posts.show', compact('post', 'comments'));
+        return view('posts.show', compact('post'));
     }
 
 
