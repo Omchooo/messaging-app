@@ -2,11 +2,11 @@
 
     <header>
         <h2 class="text-lg font-medium">
-            Found an bug or have a suggestion?
+            Found a bug or have a suggestion?
         </h2>
 
         <p class="mt-1 text-sm">
-            Please report any bug or write suggestions to one of the links below.
+            Please report bugs or write suggestions to one of the links below.
         </p>
 
     </header>
