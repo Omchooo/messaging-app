@@ -2,8 +2,8 @@
     {{-- <form method="POST" action="{{ route('comments.store', compact('post')) }}"> --}}
     {{-- @csrf --}}
     <div class="flex items-center justify-between px-3 my-2 gap-1">
-        <input type="text" wire:model="comment" name="comment" placeholder="@error('comment') {{ $message }} @enderror"
-            class="input w-full" />
+        <input type="text" wire:model="comment" name="comment" placeholder="Add a comment..."
+            class="input w-full @error('comment') border-error @enderror" />
         <button class="btn btn-circle btn-sm btn-link" wire:click="postComment" type="button">
             <svg color="#8e8e8e" fill="#8e8e8e" height="24" role="img" viewBox="0 0 24 24" width="24">
                 <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22"
