@@ -101,7 +101,7 @@
         </div>
 
 
-        <footer class="footer items-center p-4 bg-base-100 text-neutral-content mt-8">
+        <footer class="footer items-center p-4 bg-base-100 text-neutral-content ">
             <div class="items-center grid-flow-col">
                 <svg width="36" height="36" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
                     fill-rule="evenodd" clip-rule="evenodd" class="fill-info">

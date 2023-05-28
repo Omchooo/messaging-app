@@ -19,7 +19,7 @@ class ChatMessages extends Component
     {
         $this->authUser = auth()->user()->username;
 
-        $this->chatRoom = Message::latest()->with(['media', 'user'])->where('chat_id', $this->chatId)->get();
+        $this->chatRoom = Message::latest()->with(['media', 'user'])->where('chat_id', $this->chatId)->take(10)->get();
         // dump($this->chatRoom);
 
         foreach ($this->chatRoom as $chat) {
@@ -41,6 +41,36 @@ class ChatMessages extends Component
     {
         // dump($this->messageCount);
         return view('livewire.chat-messages');
+    }
+
+    public function loadMoreMessages()
+    {
+        if (isset($this->oldMessages)) {
+            $moreMessages = Message::latest()
+                ->with(['media', 'user'])
+                ->where('chat_id', $this->chatId)
+                ->skip(count($this->oldMessages))
+                ->take(3)
+                ->get();
+
+            foreach ($moreMessages as $chat) {
+                $loadMoreMessages[] = [
+                    'sender' => $chat->user->username,
+                    'message' => $chat->text,
+                    'image' => $chat->user->getFirstMediaUrl('profile'),
+                    'sentAt' => $chat->created_at->diffForHumans(),
+                    'isAuthor' => ($chat->user->username === $this->authUser) ? 1 : 0,
+                ];
+            }
+
+            if (isset($loadMoreMessages)) {
+                // $loadMoreMessages = array_reverse($loadMoreMessages);
+
+                $this->oldMessages = array_merge($loadMoreMessages, $this->oldMessages);
+            }
+            $loadMoreMessages = [];
+            // dd($loadMoreMessages);
+        }
     }
 
     public function getListeners()

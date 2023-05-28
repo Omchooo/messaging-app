@@ -1,4 +1,29 @@
 <div class="mx-3 my-2 flex flex-col gap-4 h-full overflow-y-auto scroll-smooth relative " id="chat-output">
+    @isset($oldMessages)
+    <div class="w-full flex justify-center" x-data="{
+        loading: false,
+        observe() {
+            let observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        this.loading = true;
+                        @this.call('loadMoreMessages')
+                            .then(() => {
+                                this.loading = false;
+                            });
+                    }
+                })
+            }, {
+                root: null
+            })
+
+            observer.observe(this.$el)
+        }
+    }" x-init="observe">
+        <button class="btn btn-xs before:ml-2 loading" x-bind:class="{ 'hidden': !loading }"></button>
+    </div>
+    @endisset
+
     {{-- <div id="scroll-height"> --}}
 
     @isset($oldMessages)
@@ -94,6 +119,7 @@
                 stroke-linejoin="round" stroke-linecap="round" />
         </svg>
     </button>
+
     {{-- </div> --}}
 </div>
 
@@ -119,7 +145,7 @@
             };
 
             Livewire.on('messageCountUpdated', function(messageCount) {
-                console.log(messageCount);
+                // console.log(messageCount);
                 if (messageCount >= 1 && bodyHeight.scrollTop > (highestBodyHeight - 100)) {
                     bodyHeight.scrollTo(0, bodyHeight.scrollHeight);
                     Livewire.emit('resetCount');

@@ -14,7 +14,6 @@ class Chat extends Component
 
     public function mount()
     {
-
         // dump($this->uuid);
         $authUser = auth()->user();
         $authUserChats = $authUser->chats;
@@ -38,7 +37,7 @@ class Chat extends Component
                 ->with('chats', function ($query) use ($authUserChatIds) {
                     $query->whereIn('uuid', $authUserChatIds);
                 })
-                ->with('media')
+                ->with(['media', 'messages'])
                 ->where('id', '<>', auth()->user()->id)
                 ->get();
             // dump($allChatRooms);

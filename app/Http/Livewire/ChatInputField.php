@@ -12,11 +12,20 @@ class ChatInputField extends Component
 {
     public $message = '';
     public $chatId;
+    public $sender;
+    public $senderId;
     public $uuid;
 
     protected $rules = [
         'message' => 'required',
     ];
+
+    public function mount()
+    {
+        $authUser = auth()->user();
+        $this->sender = $authUser->username;
+        $this->senderId = $authUser->id;
+    }
 
     public function render()
     {
@@ -30,14 +39,13 @@ class ChatInputField extends Component
 
         $msg = $this->message;
         $this->reset('message');
-        $sender = auth()->user()->username;
-        $senderId = auth()->user()->id;
+
         // dump($this->chatId);
         // dump(Auth::user()->id);
         // dump($this->message);
         // \Log::debug('Broadcasting message', ['sender' => $sender, 'message' => $msg, 'chatId' => $this->chatId]);
-        BroadcastMessage::dispatch($sender, $msg, $this->chatId);
-        SaveMessage::dispatch($senderId, $msg, $this->chatId);
+        BroadcastMessage::dispatch($this->sender, $msg, $this->chatId);
+        SaveMessage::dispatch($this->senderId, $msg, $this->chatId);
 
         // broadcast(new MessageSent($sender, $this->message));
 
