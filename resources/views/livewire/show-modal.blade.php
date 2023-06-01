@@ -30,7 +30,14 @@
                         <ul tabindex="0"
                             class="dropdown-content max-w-[9rem] flex flex-col gap-1 mr-2 p-2 shadow bg-base-200 rounded-box w-52">
                             <li><a class="btn btn-sm btn-wide max-w-[8rem] btn-outline">Edit</a></li>
-                            <li><a class="btn btn-sm btn-wide max-w-[8rem] btn-error btn-outline">Delete</a></li>
+                            <li>
+                                <form action="{{ route('posts.delete', compact('post')) }}" method="post">
+                                    <button
+                                        class="btn btn-sm btn-wide max-w-[8rem] btn-error btn-outline">Delete</button>
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                            </li>
                         </ul>
                     </div>
                 @else
@@ -39,10 +46,9 @@
             </div>
             {{-- <div class="divider my-0"></div> --}}
 
-            <div class="flex flex-col relative h-full items-center my-1">
+            <div class="flex flex-col relative h-full items-center my-1 min-h-[20rem]">
                 <div class=" flex flex-col gap-6 min-h-[20rem] h-full w-[calc(100%-0.5rem)] overflow-y-auto absolute">
                     @isset($post->desc)
-                        <div>
                             <div class="avatar items-center">
                                 {{-- <div class="w-10 rounded-full">
                                                     @if ($post->user->getFirstMediaUrl('profile', 'avatar'))
@@ -54,13 +60,12 @@
                                                 <span class="mx-2 truncate max-w-[7.5rem]">{{ $post->user->username }} - </span> --}}
                                 <span class="break-all max-w-[24rem] text-lg">{{ $post->desc }}</span>
                             </div>
-                        </div>
                     @endisset
                     {{-- comment with replies --}}
-                    @isset($comments)
-                        <livewire:comments :comments="$comments" :wire:key="uniqid().time()">
-                        @endisset
-                        {{-- load more comments --}}
+                    @if($hasComments)
+                        <livewire:comments :post="$post" :wire:key="uniqid().time()">
+                    @endif
+                    {{-- load more comments --}}
 
                 </div>
             </div>

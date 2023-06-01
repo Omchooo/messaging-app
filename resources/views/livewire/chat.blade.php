@@ -34,7 +34,7 @@
 
 
                 <div class="divider my-0"></div>
-                <livewire:chat-input-field :wire:key="'input-'.uniqid()" :uuid="$uuid" :chatId="$otherChatUser['chatId']">
+                <livewire:chat-input-field :wire:key="'input-'.uniqid()" :uuid="$uuid" :chatId="$otherChatUser['chatId']" :chatUuid="$otherChatUser['chatUuid']">
             </div>
         </div>
     </div>

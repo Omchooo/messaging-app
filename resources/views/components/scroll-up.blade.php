@@ -1,4 +1,4 @@
-<div class="fixed bottom-0 right-0 mb-14 mr-14" id="scrollButtonContainer">
+<div class="fixed bottom-14 right-0 mr-14" id="scrollButtonContainer">
     <button class="btn btn-circle btn-outline" id="scrollButton">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />

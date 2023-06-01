@@ -26,7 +26,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        // dump($post->id);
+        // dump($post->comments);
         // $comments = $post->comments;
 
         // $comments = Comment::latest()
@@ -39,5 +39,25 @@ class PostController extends Controller
         return view('posts.show', compact('post'));
     }
 
+    public function delete(Post $post)
+    {
+        $post->delete();
+
+        return redirect()->to(route('viewprofile.index', auth()->user()->username));
+    }
+
+    public function restore(Post $post)
+    {
+        $post->restore();
+
+        return redirect()->back();
+    }
+
+    public function forceDelete(Post $post)
+    {
+        $post->forceDelete();
+
+        return redirect()->back();
+    }
 
 }

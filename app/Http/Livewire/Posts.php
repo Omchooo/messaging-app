@@ -53,7 +53,9 @@ class Posts extends Component
             return view('livewire.posts', compact('likedPosts'));
 
         } else {
-            return view('livewire.posts');
+            $trashedPosts = Post::latest()->with('media')->onlyTrashed()->paginate($this->amount);
+
+            return view('livewire.posts', compact('trashedPosts'));
         }
 
 

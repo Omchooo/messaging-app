@@ -32,7 +32,7 @@
 
 <body>
     <div class="h-screen flex flex-col justify-between">
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center relative">
             <div class="container mx-auto max-w-5xl my-5">
                 <div class="navbar bg-base-200 shadow-xl rounded-box border border-gray-600">
                     @auth
@@ -98,6 +98,13 @@
             @yield('content')
 
             <x-scroll-up />
+
+            @unless (request()->is('inbox', 'inbox/*'))
+                @auth
+                    <livewire:message-notification-box wire:key="msgnotification.uniqid()">
+                @endauth
+            @endunless
+
         </div>
 
 

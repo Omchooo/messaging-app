@@ -69,7 +69,7 @@
                     observer.observe(this.$el)
                 }
             }" x-init="observe">
-                 <button class="btn max-w-[10rem] loading w-full" x-bind:class="{ 'hidden': !loading }">loading</button>
+                <button class="btn max-w-[10rem] loading w-full" x-bind:class="{ 'hidden': !loading }">loading</button>
             </div>
 
             {{-- @if ($likedPosts->hasMorePages())
@@ -78,7 +78,56 @@
         @endisset
 
 
-        {{-- {{ $user }} --}}
+        @isset($trashedPosts)
+            @foreach ($trashedPosts as $post)
+            <div class="relative inline-block group">
+                <a href="{{ route('posts.show', $post->id) }}" class="hover:drop-shadow-2xl">
+                    <picture>
+                        <img src="{{ $post->getFirstMediaUrl() }}" alt="Image"
+                            class="aspect-1/1 w-80 object-cover rounded-sm shadow-md" />
+                    </picture>
+                </a>
+                <div class="absolute inset-0 gap-5 flex items-center justify-center bg-base-200 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <form action="{{ route('posts.restore', $post->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-outline btn-success">Restore</button>
+                    </form>
+                    <form action="{{ route('posts.forceDelete', $post->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-outline btn-error">Delete</button>
+                    </form>
+                </div>
+            </div>
+            @endforeach
+            <div class="w-full flex justify-center" x-data="{
+                loading: false,
+                observe() {
+                    let observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                this.loading = true;
+                                @this.call('loadMore')
+                                    .then(() => {
+                                        this.loading = false;
+                                    });
+                            }
+                        })
+                    }, {
+                        root: null
+                    })
+
+                    observer.observe(this.$el)
+                }
+            }" x-init="observe">
+                <button class="btn max-w-[10rem] loading w-full" x-bind:class="{ 'hidden': !loading }">loading</button>
+            </div>
+
+            {{-- @if ($likedPosts->hasMorePages())
+                <button wire:click="loadMore" class="btn btn-info btn-outline">Load more</button>
+            @endif --}}
+        @endisset
 
 
     </div>

@@ -40,11 +40,20 @@ Route::middleware('auth')->group(function () {
     Route::post('/inbox/greet/{user}', [InboxController::class, 'greetReceived'])->name('inbox.greet'); //to be removed
 
     // //ProfileController already taken by breeze
-    Route::get('/user/{user:username}', [ViewController::class, 'index'])->name('viewprofile.index');
+    Route::get('/user/{user:username}', [ViewController::class, 'index'])
+    ->name('viewprofile.index')
+    ->withTrashed();
 
     Route::get('/post/create', [PostController::class, 'create'])->name('posts.create');
     Route::post('/post', [PostController::class, 'store'])->name('posts.store');
     Route::get('/post/{post}', [PostController::class, 'show'])->name('posts.show');
+    Route::delete('/post/{post}/delete', [PostController::class, 'delete'])->name('posts.delete');
+    Route::delete('/post/{post}/restore', [PostController::class, 'restore'])
+        ->name('posts.restore')
+        ->withTrashed();
+    Route::delete('/post/{post}/forceDelete', [PostController::class, 'forceDelete'])
+        ->name('posts.forceDelete')
+        ->withTrashed();
 
     Route::post('/comment', [CommentController::class, 'store'])->name('comments.store');
 
