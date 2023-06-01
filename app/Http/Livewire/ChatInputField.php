@@ -3,8 +3,12 @@
 namespace App\Http\Livewire;
 
 use App\Events\MessageSent;
+use App\Events\NotificationBox;
 use App\Jobs\BroadcastMessage;
 use App\Jobs\SaveMessage;
+use App\Jobs\SendNotificationBox;
+use App\Models\Chat;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -12,9 +16,10 @@ class ChatInputField extends Component
 {
     public $message = '';
     public $chatId;
+    public $chatUuid;
     public $sender;
     public $senderId;
-    public $uuid;
+    public $allChatUserIds;
 
     protected $rules = [
         'message' => 'required',
@@ -23,8 +28,18 @@ class ChatInputField extends Component
     public function mount()
     {
         $authUser = auth()->user();
-        $this->sender = $authUser->username;
+        $this->sender = $authUser->username; //$authUser->full_name ?? $authUser->username
         $this->senderId = $authUser->id;
+        $chatId = $this->chatId;
+
+        $this->allChatUserIds = User::whereHas('chats', function ($query) use ($chatId) {
+            $query->where('chat_id', $chatId);
+            })
+            ->where('id', '<>', $authUser->id)
+            ->pluck('id')
+            ->toArray();
+        // dump($authUser->id);
+        dump($this->chatUuid);
     }
 
     public function render()
@@ -44,14 +59,12 @@ class ChatInputField extends Component
         // dump(Auth::user()->id);
         // dump($this->message);
         // \Log::debug('Broadcasting message', ['sender' => $sender, 'message' => $msg, 'chatId' => $this->chatId]);
+
         BroadcastMessage::dispatch($this->sender, $msg, $this->chatId);
         SaveMessage::dispatch($this->senderId, $msg, $this->chatId);
-
-        // broadcast(new MessageSent($sender, $this->message));
-
-        // dispatch(new BroadcastMessage($sender, $this->message));
+        SendNotificationBox::dispatch($this->sender, $this->allChatUserIds, $this->chatUuid);
+        // NotificationBox::broadcast($this->sender, $this->allChatUserIds, $this->chatId);
+        // dispatch(new BroadcastMessage($this->sender, $msg, $this->chatId));
 
     }
-
-
 }
