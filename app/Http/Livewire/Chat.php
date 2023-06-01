@@ -33,7 +33,7 @@ class Chat extends Component
         } else {
             $allChatRooms = User::whereHas('chats', function ($query) use ($authUserChatIds) {
                 $query->whereIn('uuid', $authUserChatIds);
-            })
+                })
                 ->with('chats', function ($query) use ($authUserChatIds) {
                     $query->whereIn('uuid', $authUserChatIds);
                 })
@@ -57,12 +57,13 @@ class Chat extends Component
                         'userName' => $chatRoom->username,
                         'fullName' => $chatRoom->full_name,
                         'chatId' => $chatRoom->chats[0]->id,
+                        'chatUuid' => $chatRoom->chats[0]->uuid,
                         'userImage' => $chatRoom->getFirstMediaUrl('profile', 'avatar')
                     ];
                 }
             }
             // dump($this->users);
-            // dump($this->otherChatUser);
+            dump($this->otherChatUser);
 
             // dump(DB::getQueryLog());
         }
