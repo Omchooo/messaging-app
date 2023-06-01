@@ -1,6 +1,6 @@
 <div>
     @if ($isOwner)
-        <div class="btn btn-info btn-lg btn-outline text-xs min-h-[2.5rem] h-10">manage</div> {{-- btn-neutral if following --}}
+        <a href="{{ url('profile') }}" class="btn btn-info btn-lg btn-outline text-xs min-h-[2.5rem] h-10">manage</a> {{-- btn-neutral if following --}}
     @else
         <div class="flex gap-2">
             <div class="indicator">

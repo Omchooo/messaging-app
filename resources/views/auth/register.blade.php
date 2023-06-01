@@ -3,10 +3,9 @@
 @section('content')
     <div class="container mx-auto max-w-5xl my-5 flex items-center justify-around">
         <div class="mockup-code">
-            <pre data-prefix="$"><code>php artisan serve</code></pre>
-            <pre data-prefix=">" class="text-warning"><code>starting the server</code></pre>
-            <pre data-prefix=">" class="text-warning"><code>loading web page</code></pre>
-            <pre data-prefix=">" class="text-success"><code>successfully loaded, please register</code></pre>
+            <pre data-prefix="$"><code>create your own account</code></pre>
+            <pre data-prefix=">" class="text-warning"><code>you can enter fake email</code></pre>
+            <pre data-prefix=">" class="text-warning"><code>there are no email confirmations</code></pre>
             <x-input-error :messages="$errors" class="mt-2" />
             {{-- <x-input-error :messages="$errors->get('username')" class="mt-2" />
             <x-input-error :messages="$errors->get('full_name')" class="mt-2" />

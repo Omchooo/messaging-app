@@ -48,10 +48,12 @@
         </div>
 
         <div class="mockup-code">
-            <pre data-prefix="$"><code>php artisan serve</code></pre>
-            <pre data-prefix=">" class="text-warning"><code>starting the server</code></pre>
-            <pre data-prefix=">" class="text-warning"><code>loading web page</code></pre>
-            <pre data-prefix=">" class="text-success"><code>successfully loaded, please login</code></pre>
+            <pre data-prefix="$"><code>welcome to instabyte</code></pre>
+            <pre data-prefix=">" class="text-warning"><code>application is still under development</code></pre>
+            <pre data-prefix=">" class="text-warning"><code>real-time events are currently down</code></pre>
+            <pre data-prefix=">" class="text-success"><code>credentials for fast login:</code></pre>
+            <pre data-prefix=">" class="text-success"><code>email: test@test.com</code></pre>
+            <pre data-prefix=">" class="text-success"><code>password: testtest</code></pre>
             <x-input-error :messages="$errors" />
             <br/>
             <pre data-prefix=">" class="text-info"><code><a href="{{ url('/register') }}">don't have an account?</a></code></pre>
