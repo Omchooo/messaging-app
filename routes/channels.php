@@ -34,6 +34,10 @@ Broadcast::channel('chat.{id}', function ($user, $id) {
     }
 });
 
+Broadcast::channel('user.chat.box.{id}', function ($user, $id) {
+    return (int) $user->id === (int) $id;
+});
+
 Broadcast::channel('inbox.greet.{receiver}', function ($user, $receiver) {
     return (int) $user->id === (int) $receiver;
 });
