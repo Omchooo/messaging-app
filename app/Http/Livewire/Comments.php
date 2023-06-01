@@ -6,18 +6,20 @@ use Livewire\Component;
 
 class Comments extends Component
 {
-    protected $allComments;
+    public $amount = 7;
+    public $post;
 
-    public function mount($comments)
-    {
-        $this->allComments = $comments;
-        // dd($this->allComments);
-    }
     public function render()
     {
-        // dd($this->allComments);
-        $allComments = $this->allComments;
-        return view('livewire.comments', compact('allComments'));
+        $comments = $this->post->comments->paginate($this->amount);
+        // dump($comments);
+
+        return view('livewire.comments', compact('comments'));
+    }
+
+    public function loadMore()
+    {
+        $this->amount += 5;
     }
 
 }

@@ -6,13 +6,7 @@ use Livewire\Component;
 
 class ShowModal extends Component
 {
-    public $amount = 7;
     public $post;
-
-    public function loadMore()
-    {
-        $this->amount += 5;
-    }
 
     public function render()
     {
@@ -22,16 +16,12 @@ class ShowModal extends Component
         //     return view('livewire.modal', compact('comments', 'modalState'));
         // }
 
-        // $comments = Comment::latest()
-        // ->withCount('likers')
-        // ->where('post_id', $this->post->id)
-        // ->paginate($this->amount);
-        $comments = $this->post->comments->paginate($this->amount);
+        $hasComments = $this->post->comments->count();
 
-        // $freshPost = $this->post->fresh();
-        // $this->setState();
-        // $modalState = $this->state;
 
-        return view('livewire.show-modal', compact('comments'));
+        return view('livewire.show-modal', compact('hasComments'));
     }
+
+
+
 }
