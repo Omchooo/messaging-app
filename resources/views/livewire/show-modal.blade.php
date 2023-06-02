@@ -22,7 +22,7 @@
                         @endif
                     </div>
                     <span class="mx-2 text-lg"><a
-                            href="{{ route('viewprofile.index', $post->user) }}">{{ $post->user->username }}</a></span>
+                            href="{{ route('viewprofile.index', $post->user) }}">{{ $post->user->full_name ?? $post->user->username }}</a></span>
                 </div>
                 @if ($post->user->id === auth()->user()->id)
                     <div class="dropdown dropdown-end">

@@ -3,20 +3,18 @@
         <div class="flex flex-col gap-4">
             {{-- comment by user --}}
             <div class="flex justify-between items-center">
-                <div class="h-full">
-                    <div class="avatar">
-                        <div class="w-10 rounded-full">
-                            @if ($comment->user->getFirstMediaUrl('profile', 'avatar'))
-                                <img src="{{ $comment->user->getFirstMediaUrl('profile', 'avatar') }}" />
-                            @else
-                                <img src="https://placeimg.com/192/192/people" />
-                            @endif
-                        </div>
+                <div class="avatar">
+                    <div class="w-10 rounded-full">
+                        @if ($comment->user->getFirstMediaUrl('profile', 'avatar'))
+                            <img src="{{ $comment->user->getFirstMediaUrl('profile', 'avatar') }}" />
+                        @else
+                            <img src="https://placeimg.com/192/192/people" />
+                        @endif
                     </div>
                 </div>
-                <div class="max-w-[30rem] mx-4 flex flex-col w-full items-start">
+                <div class="max-w-[32rem] flex flex-col w-full items-start">
                     <p class="w-full"><a
-                            href="{{ route('viewprofile.index', $comment->user) }}">{{ $comment->user->username }}</a>
+                            href="{{ route('viewprofile.index', $comment->user) }}">{{ $comment->user->full_name ?? $comment->user->username }}</a>
                     </p>
                     <span class="break-words text-sm">{{ $comment->comment }}</span>
                 </div>
