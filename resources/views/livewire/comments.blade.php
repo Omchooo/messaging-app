@@ -12,7 +12,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="max-w-[32rem] flex flex-col w-full items-start">
+                <div class="max-w-[31.5rem] flex flex-col w-full items-start">
                     <p class="w-full"><a
                             href="{{ route('viewprofile.index', $comment->user) }}">{{ $comment->user->full_name ?? $comment->user->username }}</a>
                     </p>
