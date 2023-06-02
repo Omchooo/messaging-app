@@ -39,7 +39,7 @@ class ChatInputField extends Component
             ->pluck('id')
             ->toArray();
         // dump($authUser->id);
-        dump($this->chatUuid);
+        // dump($this->chatUuid);
     }
 
     public function render()

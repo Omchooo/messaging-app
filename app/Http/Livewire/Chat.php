@@ -63,7 +63,7 @@ class Chat extends Component
                 }
             }
             // dump($this->users);
-            dump($this->otherChatUser);
+            // dump($this->otherChatUser);
 
             // dump(DB::getQueryLog());
         }
