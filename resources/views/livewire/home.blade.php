@@ -27,7 +27,7 @@
                         <span class="text-xs my-1">{{ $post->created_at->diffForHumans() }}</span>
                     </div>
                     <div class="divider my-1"></div>
-                    <livewire:add-comment :post_id="$post->id" :wire:key="uniqid()">
+                    <livewire:add-comment :post_id="$post->id" :wire:key="uniqid()" />
                 </div>
             @endif
         @endforeach

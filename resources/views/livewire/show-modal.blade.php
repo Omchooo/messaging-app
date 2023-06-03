@@ -29,7 +29,7 @@
                         <label tabindex="0" class="btn btn-info btn-xs btn-outline text-xs">manage</label>
                         <ul tabindex="0"
                             class="dropdown-content max-w-[9rem] flex flex-col gap-1 mr-2 p-2 shadow bg-base-200 rounded-box w-52">
-                            <li><a class="btn btn-sm btn-wide max-w-[8rem] btn-outline">Edit</a></li>
+                            <li><a href="{{ route('posts.edit', compact('post')) }}" class="btn btn-sm btn-wide max-w-[8rem] btn-outline">Edit</a></li>
                             <li>
                                 <form action="{{ route('posts.delete', compact('post')) }}" method="post">
                                     <button

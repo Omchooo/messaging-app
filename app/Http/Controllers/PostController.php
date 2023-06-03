@@ -39,8 +39,31 @@ class PostController extends Controller
         return view('posts.show', compact('post'));
     }
 
+    public function edit(Post $post)
+    {
+        $this->authorize('view', $post);
+
+        return view('posts.edit', compact('post'));
+    }
+
+    public function update(Request $request, Post $post)
+    {
+        $this->authorize('update', $post);
+
+        $validatedData = $request->validate([
+            'desc' => 'nullable|string|max:255',
+        ]);
+
+        $post->desc = $validatedData['desc'];
+        $post->save();
+
+        return redirect()->back()->with('message', 'Post has been updated successfully');
+    }
+
     public function delete(Post $post)
     {
+        $this->authorize('delete', $post);
+
         $post->delete();
 
         return redirect()->to(route('viewprofile.index', auth()->user()->username));
@@ -48,6 +71,8 @@ class PostController extends Controller
 
     public function restore(Post $post)
     {
+        $this->authorize('restore', $post);
+
         $post->restore();
 
         return redirect()->back();
@@ -55,6 +80,8 @@ class PostController extends Controller
 
     public function forceDelete(Post $post)
     {
+        $this->authorize('forceDelete', $post);
+
         $post->forceDelete();
 
         return redirect()->back();
