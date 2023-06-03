@@ -2,23 +2,28 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Spatie\Image\Manipulations;
 use Spatie\Image\Image;
 
 class Drawer extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads, AuthorizesRequests;
 
     public $user;
     public $toggleTab = 1;
     public $image;
+    public $bio;
     public $theme;
+    public $success = false;
+
 
     public function render()
     {
-
         return view('livewire.drawer');
     }
 
@@ -55,5 +60,29 @@ class Drawer extends Component
         // $post = $request->getData();
         // dump($request->getData());
         // return redirect()->route('posts.create')->with('message', 'Post has been successfully published');
+    }
+
+    public function updateBio()
+    {
+
+        $this->validate([
+            'bio' => 'nullable|string|max:255',
+        ]);
+        // dump($this->bio);
+        if ($this->user->bio === $this->bio) {
+            $this->success = false;
+
+            request()->session()->flash('statusBio', 'Please change your description');
+        } else {
+            $this->success = true;
+
+            $this->user->bio = $this->bio;
+            $this->user->save();
+
+            $this->bio = '';
+
+            request()->session()->flash('statusBio', 'Successfully updated description');
+        }
+
     }
 }
