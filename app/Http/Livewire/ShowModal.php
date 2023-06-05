@@ -17,9 +17,9 @@ class ShowModal extends Component
         // }
 
         $hasComments = $this->post->comments->count();
+        $user = $this->post->user->load('following');
 
-
-        return view('livewire.show-modal', compact('hasComments'));
+        return view('livewire.show-modal', compact('hasComments', 'user'));
     }
 
 

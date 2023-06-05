@@ -38,6 +38,8 @@ class MessageNotificationBox extends Component
 
     public function notifyNewMessageBox($event)
     {
+        // dd($event);
+
         if ($this->visibility === 'hidden') {
             $this->visibility = '';
         }
@@ -52,6 +54,7 @@ class MessageNotificationBox extends Component
         } else {
             $notification = [
                 'sender' => $event['sender'],
+                'senderImg' => $event['senderImg'],
                 'chatRoom' => $event['chatRoom'],
                 'count' => 1,
             ];

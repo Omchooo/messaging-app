@@ -15,6 +15,7 @@ class NotificationBox implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $sender;
+    public $senderImg;
     public $receiverId;
     public $chatRoom;
 
@@ -23,9 +24,10 @@ class NotificationBox implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct($sender, $receiverId, $chatRoom)
+    public function __construct($sender, $senderImg, $receiverId, $chatRoom)
     {
         $this->sender = $sender;
+        $this->senderImg = $senderImg;
         $this->receiverId = $receiverId;
         $this->chatRoom = $chatRoom;
     }

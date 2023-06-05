@@ -53,13 +53,16 @@ class Chat extends Component
                 ];
 
                 if (in_array($this->uuid, $chatRoom->chats[0]->toArray())) {
-                    $this->otherChatUser = [
-                        'userName' => $chatRoom->username,
-                        'fullName' => $chatRoom->full_name,
-                        'chatId' => $chatRoom->chats[0]->id,
-                        'chatUuid' => $chatRoom->chats[0]->uuid,
-                        'userImage' => $chatRoom->getFirstMediaUrl('profile', 'avatar')
-                    ];
+                    $this->otherChatUser = $chatRoom;
+                    // dd($this->otherChatUser->chats);
+                    // [
+                    //     'id' => $chatRoom->id,
+                    //     'userName' => $chatRoom->username,
+                    //     'fullName' => $chatRoom->full_name,
+                    //     'chatId' => $chatRoom->chats[0]->id,
+                    //     'chatUuid' => $chatRoom->chats[0]->uuid,
+                    //     'userImage' => $chatRoom->getFirstMediaUrl('profile', 'avatar')
+                    // ];
                 }
             }
             // dump($this->users);

@@ -31,6 +31,7 @@ class HasChat extends Component
     {
         return view('livewire.has-chat', [
             'isOwner' => $this->isOwner,
+            'user' => $this->user2,
         ]);
     }
 

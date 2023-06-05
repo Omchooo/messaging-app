@@ -18,6 +18,7 @@ class ChatInputField extends Component
     public $chatId;
     public $chatUuid;
     public $sender;
+    public $senderImg;
     public $senderId;
     public $allChatUserIds;
 
@@ -27,8 +28,9 @@ class ChatInputField extends Component
 
     public function mount()
     {
-        $authUser = auth()->user();
+        $authUser = Auth::user();
         $this->sender = $authUser->username; //$authUser->full_name ?? $authUser->username
+        $this->senderImg = $authUser->getFirstMediaUrl('profile', 'avatar');
         $this->senderId = $authUser->id;
         $chatId = $this->chatId;
 
@@ -62,7 +64,7 @@ class ChatInputField extends Component
 
         BroadcastMessage::dispatch($this->sender, $msg, $this->chatId);
         SaveMessage::dispatch($this->senderId, $msg, $this->chatId);
-        SendNotificationBox::dispatch($this->sender, $this->allChatUserIds, $this->chatUuid);
+        SendNotificationBox::dispatch($this->sender, $this->senderImg, $this->allChatUserIds, $this->chatUuid);
         // NotificationBox::broadcast($this->sender, $this->allChatUserIds, $this->chatId);
         // dispatch(new BroadcastMessage($this->sender, $msg, $this->chatId));
 

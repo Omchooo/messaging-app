@@ -29,7 +29,8 @@
                         <label tabindex="0" class="btn btn-info btn-xs btn-outline text-xs">manage</label>
                         <ul tabindex="0"
                             class="dropdown-content max-w-[9rem] flex flex-col gap-1 mr-2 p-2 shadow bg-base-200 rounded-box w-52">
-                            <li><a href="{{ route('posts.edit', compact('post')) }}" class="btn btn-sm btn-wide max-w-[8rem] btn-outline">Edit</a></li>
+                            <li><a href="{{ route('posts.edit', compact('post')) }}"
+                                    class="btn btn-sm btn-wide max-w-[8rem] btn-outline">Edit</a></li>
                             <li>
                                 <form action="{{ route('posts.delete', compact('post')) }}" method="post">
                                     <button
@@ -41,7 +42,7 @@
                         </ul>
                     </div>
                 @else
-                    <div class="btn btn-info btn-xs btn-outline text-xs">follow</div> {{-- btn-neutral if following --}}
+                    <livewire:follow :user="$user" :wire:key="uniqid()" />
                 @endif
             </div>
             {{-- <div class="divider my-0"></div> --}}
@@ -49,8 +50,8 @@
             <div class="flex flex-col relative h-full items-center my-1 min-h-[20rem]">
                 <div class=" flex flex-col gap-6 min-h-[20rem] h-full w-[calc(100%-0.5rem)] overflow-y-auto absolute">
                     @isset($post->desc)
-                            <div class="avatar items-center">
-                                {{-- <div class="w-10 rounded-full">
+                        <div class="avatar items-center">
+                            {{-- <div class="w-10 rounded-full">
                                                     @if ($post->user->getFirstMediaUrl('profile', 'avatar'))
                                                         <img src="{{ $post->user->getFirstMediaUrl('profile', 'avatar') }}" />
                                                     @else
@@ -58,11 +59,11 @@
                                                     @endif
                                                 </div>
                                                 <span class="mx-2 truncate max-w-[7.5rem]">{{ $post->user->username }} - </span> --}}
-                                <span class="break-all max-w-[24rem] text-lg">{{ $post->desc }}</span>
-                            </div>
+                            <span class="break-all max-w-[24rem] text-lg">{{ $post->desc }}</span>
+                        </div>
                     @endisset
                     {{-- comment with replies --}}
-                    @if($hasComments)
+                    @if ($hasComments)
                         <livewire:comments :post="$post" :wire:key="uniqid().time()">
                     @endif
                     {{-- load more comments --}}

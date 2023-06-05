@@ -15,7 +15,26 @@
                             <span class="mx-2"><a
                                     href="{{ route('viewprofile.index', $post->user) }}">{{ $post->user->full_name ?? $post->user->username }}</a></span>
                         </div>
-                        <div class="btn btn-info btn-xs btn-outline text-xs">follow</div> {{-- btn-neutral if following --}}
+                        @if ($post->user->id === auth()->user()->id)
+                            <div class="dropdown dropdown-end">
+                                <label tabindex="0" class="btn btn-info btn-xs btn-outline text-xs">manage</label>
+                                <ul tabindex="0"
+                                    class="dropdown-content max-w-[9rem] flex flex-col gap-1 mr-2 p-2 shadow bg-base-200 rounded-box w-52">
+                                    <li><a href="{{ route('posts.edit', compact('post')) }}"
+                                            class="btn btn-sm btn-wide max-w-[8rem] btn-outline">Edit</a></li>
+                                    <li>
+                                        <form action="{{ route('posts.delete', compact('post')) }}" method="post">
+                                            <button
+                                                class="btn btn-sm btn-wide max-w-[8rem] btn-error btn-outline">Delete</button>
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        @else
+                            <livewire:follow :user="$post->user" :wire:key="uniqid()" />
+                        @endif
                     </div>
                     <picture class="flex justify-center">
                         <img src="{{ $post->getFirstMediaUrl() }}" alt="Image" class="w-144" />

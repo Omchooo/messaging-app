@@ -16,6 +16,7 @@ class SendNotificationBox implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $sender;
+    public $senderImg;
     public $receiverIds;
     public $chatRoom;
 
@@ -24,9 +25,10 @@ class SendNotificationBox implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($sender, $receiverIds, $chatRoom)
+    public function __construct($sender, $senderImg, $receiverIds, $chatRoom)
     {
         $this->sender = $sender;
+        $this->senderImg = $senderImg;
         $this->receiverIds = $receiverIds;
         $this->chatRoom = $chatRoom;
     }
@@ -41,7 +43,7 @@ class SendNotificationBox implements ShouldQueue
         // \Log::debug("{$this->sender}, room id: {$this->chatRoom}");
 
        foreach ($this->receiverIds as $receiverId) {
-            broadcast(new NotificationBox($this->sender, $receiverId, $this->chatRoom));
+            broadcast(new NotificationBox($this->sender, $this->senderImg, $receiverId, $this->chatRoom));
         }
     }
 }

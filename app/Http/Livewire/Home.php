@@ -14,12 +14,11 @@ class Home extends Component
     public function render()
     {
         $posts = Post::latest()
-            // ->with('user')
-            // ->with('media')
+            ->with('user.following')
+            ->with('media')
             // ->withCount('comments')
             // ->with('likers')
             ->paginate($this->amount);
-
 
         return view('livewire.home', compact('posts'));
     }
@@ -28,7 +27,5 @@ class Home extends Component
     {
         $this->amount += 2;
     }
-
-
 
 }
