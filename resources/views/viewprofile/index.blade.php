@@ -11,6 +11,11 @@
                 </div>
                 <span class="my-1 text-2xl max-w-[90%] break-all">{{ $user->full_name }}</span>
                 <span class="my-1 text-xl max-w-[90%] truncate">{{ '@' . $user->username }}</span>
+                <span class="flex justify-evenly my-1max-w-[90%] w-full">
+                    <livewire:follow-modal :user="$user" />
+                    {{-- <span>{{ $user->followers->count() }} followers</span> --}}
+                    {{-- <span>{{ $user->following->count() }} following</span> --}}
+                </span>
                 <span class="my-1 text-md max-w-[90%] break-all whitespace-pre-line">{{ $user->bio }}</span>
                 <livewire:has-chat :user='$user' :wire:key="uniqid()">
             </div>

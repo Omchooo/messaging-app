@@ -13,12 +13,7 @@ class Modal extends Component
 
     public function showComponent()
     {
-        if ($this->showComponent) {
-            $this->showComponent = false;
-        }
-        else {
-        $this->showComponent = true;
-        }
+        $this->showComponent = !$this->showComponent;
     }
 
     // public function setState()

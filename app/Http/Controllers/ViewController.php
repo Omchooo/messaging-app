@@ -15,6 +15,8 @@ class ViewController extends Controller
 
     public function index(User $user)
     {
+        // $user->load(['following', 'followers']);
+        // dd($user->following->toArray());
 
         // DB::enableQueryLog();
         // $posts = Post::latest()->where('user_id', $user->id)->take(6)->get();

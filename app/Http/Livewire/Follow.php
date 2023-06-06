@@ -27,6 +27,7 @@ class Follow extends Component
 
     public function render()
     {
+        // dump($this->authUser->following->count());
         return view('livewire.follow');
     }
 
