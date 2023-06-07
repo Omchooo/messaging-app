@@ -26,6 +26,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        $title = 'Post by ' . ($post->user->full_name ?? $post->user->username) . ' • InstaByte';
         // dump($post->comments);
         // $comments = $post->comments;
 
@@ -36,7 +37,7 @@ class PostController extends Controller
 
         // $post->fresh();
         // dump(request()->route('post'));
-        return view('posts.show', compact('post'));
+        return view('posts.show', compact('post', 'title'));
     }
 
     public function edit(Post $post)

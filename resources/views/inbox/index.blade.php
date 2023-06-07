@@ -1,5 +1,6 @@
 @extends('layouts.main')
 
+@section('title', 'Inbox • InstaByte')
 
 @section('content')
     <div class="container mx-auto max-h-[764px] flex justify-center">

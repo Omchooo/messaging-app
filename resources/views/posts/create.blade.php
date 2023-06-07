@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title', 'Create new post • InstaByte')
+
 @section('content')
 
 @if ($message = session('message'))

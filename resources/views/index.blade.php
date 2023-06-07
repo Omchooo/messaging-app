@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title', 'Home • InstaByte')
+
 @section('content')
     <div class="container mx-auto max-w-2xl my-5 mt-0 flex flex-col items-center">
         <a href="{{ route('posts.create') }}" class="btn btn-circle btn-outline bg-base-200">

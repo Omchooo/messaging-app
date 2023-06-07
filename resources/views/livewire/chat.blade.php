@@ -1,4 +1,5 @@
 {{-- @section('content') --}}
+@section('title', $title)
 
     <div class="container mx-auto max-h-[764px] flex justify-center">
         <div class="flex-row card bg-base-200 rounded-none h-[48rem]">

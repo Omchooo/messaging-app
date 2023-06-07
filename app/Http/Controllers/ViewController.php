@@ -15,6 +15,7 @@ class ViewController extends Controller
 
     public function index(User $user)
     {
+        $title = ($user->full_name ?? $user->username) .  " • InstaByte";
         // $user->load(['following', 'followers']);
         // dd($user->following->toArray());
 
@@ -22,7 +23,7 @@ class ViewController extends Controller
         // $posts = Post::latest()->where('user_id', $user->id)->take(6)->get();
         // dump(DB::getQueryLog());
         // dump($posts);
-        return view('viewprofile.index', compact('user'));
+        return view('viewprofile.index', compact('user', 'title'));
     }
 
 

@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title', 'Login • InstaByte')
+
 @section('content')
     <div class="container mx-auto max-w-5xl my-5 flex items-center justify-around">
         <div class="card w-96 bg-base-200 shadow-2xl my-4 border border-gray-600">

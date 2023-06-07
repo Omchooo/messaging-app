@@ -53,7 +53,7 @@ class InboxController extends Controller
 
         // dump($users);
 
-        return view('inbox.index', compact(['users']));
+        return view('inbox.index', compact('users'));
     }
 
     // public function messageReceived(Request $request)

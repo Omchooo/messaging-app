@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title', $title)
+
 @section('content')
     <div class="container mx-auto my-5 flex flex-col items-center max-w-5xl">
         <div class="card w-96 bg-base-200 border border-gray-600 shadow-xl">

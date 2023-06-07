@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title', 'Edit post • InstaByte')
+
 @section('content')
     @if ($message = session('message'))
         <div class="alert alert-success shadow-lg max-w-2xl">

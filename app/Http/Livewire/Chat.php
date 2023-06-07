@@ -10,6 +10,7 @@ class Chat extends Component
     public $users;
     public $otherChatUser;
     public $uuid;
+    public $title;
     // private $chatid;
 
     public function mount()
@@ -69,6 +70,7 @@ class Chat extends Component
             // dump($this->otherChatUser);
 
             // dump(DB::getQueryLog());
+            $this->title = ($this->otherChatUser->full_name ?? $this->otherChatUser->username) . ' • InstaByte';
         }
     }
 

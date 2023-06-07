@@ -26,7 +26,7 @@
 
 
 
-    <title>Instabyte</title>
+    <title>@yield('title')</title>
 
 </head>
 

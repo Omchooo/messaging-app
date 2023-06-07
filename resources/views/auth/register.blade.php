@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title', 'Register • InstaByte')
+
 @section('content')
     <div class="container mx-auto max-w-5xl my-5 flex items-center justify-around">
         <div class="mockup-code">
