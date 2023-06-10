@@ -102,8 +102,8 @@
             @unless (request()->is('inbox', 'inbox/*'))
                 @auth
                     <livewire:message-notification-box wire:key="msgnotification.uniqid()">
-                @endauth
-            @endunless
+                    @endauth
+                @endunless
 
         </div>
 

@@ -20,10 +20,14 @@ class Drawer extends Component
     public $bio;
     public $theme;
     public $success = false;
-
+    public $searchInput;
+    public $searchFor;
+    public $followUsers = [];
 
     public function render()
     {
+        $this->userSearch();
+
         return view('livewire.drawer');
     }
 
@@ -39,10 +43,9 @@ class Drawer extends Component
         ]);
 
         if ($this->user->getFirstMediaUrl('profile')) {
-        $this->user->clearMediaCollection('profile'); //delete previous image
+            $this->user->clearMediaCollection('profile'); //delete previous image
 
         }
-
 
         // Image::load($this->image)->fit(Manipulations::FIT_CROP, 50, 50)->format(Manipulations::FORMAT_PNG)->save();
         // $this->image->crop(Manipulations::CROP_CENTER, 50, 50);
@@ -54,7 +57,6 @@ class Drawer extends Component
             // $this->image = null;
             request()->session()->flash('status', 'Successfully uploaded');
         }
-
 
         // dump($this->validated());
         // $post = $request->getData();
@@ -83,6 +85,49 @@ class Drawer extends Component
 
             request()->session()->flash('statusBio', 'Successfully updated description');
         }
+    }
 
+    public function setSearchFor($searchFor)
+    {
+        $this->searchFor = $searchFor;
+    }
+
+    public function userSearch()
+    {
+        $searchFor = $this->searchFor ? 'followers' :  'following';
+        $searchId = $this->searchFor ? 'follower_id' :  'followed_id';
+
+        if ($this->searchInput) {
+            $searchInput = $this->searchInput;
+
+            $searchOutput = User::where(function ($query) use ($searchInput) {
+                $query->where('username', 'LIKE', "%{$searchInput}%")
+                    ->orWhere('full_name', 'LIKE', "%{$searchInput}%");
+                })
+                ->whereHas($searchFor, function ($query) use ($searchId) {
+                    $query->where($searchId, auth()->user()->id);
+                })
+                // ->with("user.$searchFor")
+                ->get();
+
+            $this->searchOutput($searchOutput);
+        }
+    }
+
+    public function searchOutput($searchOutput)
+    {
+        if ($searchOutput) {
+            $this->followUsers = [];
+            foreach ($searchOutput as $user) {
+                $this->followUsers[] = [
+                    'id' => $user->id,
+                    'username' => $user->username,
+                    'fullName' => $user->full_name,
+                    'userImage' => $user->getFirstMediaUrl('profile', 'avatar')
+                ];
+                // dump($user->getFirstMediaUrl('profile', 'avatar'));
+                // dump($user->username);
+            }
+        }
     }
 }
