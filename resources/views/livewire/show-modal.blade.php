@@ -60,7 +60,7 @@
                                                     @endif
                                                 </div>
                                                 <span class="mx-2 truncate max-w-[7.5rem]">{{ $post->user->username }} - </span> --}}
-                            <span class="break-all max-w-[24rem] text-lg">{{ $post->desc }}</span>
+                            <span class="break-all text-lg">{{ $post->desc }}</span>
                         </div>
                     @endisset
                     {{-- comment with replies --}}
