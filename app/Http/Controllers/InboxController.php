@@ -40,7 +40,7 @@ class InboxController extends Controller
                 'userName' => $chatRoom->username,
                 'fullName' => $chatRoom->full_name,
                 'chatUuid' => $chatRoom->chats[0]->uuid,
-                'userImage' => $chatRoom->getFirstMediaUrl('profile', 'avatar')
+                'userImage' => $chatRoom->getFirstMedia('profile')->img('avatar')
             ];
         }
     }

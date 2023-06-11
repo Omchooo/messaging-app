@@ -8,7 +8,7 @@
                         <div class="avatar items-center hover:cursor-pointer">
                             <div class="w-14 rounded-full">
                                 @if ($user['userImage'])
-                                    <img src="{{ $user['userImage'] }}" />
+                                    {{ $user['userImage'] }}
                                 @else
                                     <img src="https://placeimg.com/192/192/people" />
                                 @endif

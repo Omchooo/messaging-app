@@ -7,16 +7,17 @@
             </div> --}}
 <div class="container mx-auto max-w-6xl flex flex-col items-center">
     <div class="flex-row max-w-[72rem] card bg-base-200 rounded-none">
-        <picture class="flex items-center bg-base-300">
-            <img src="{{ $post->getFirstMediaUrl() }}" alt="Image" class="min-w-[26rem] max-w-md" />
+        <picture class="flex items-center bg-base-300 show-modal-img">
+            {{ $post->getFirstMedia('post')->img('responsive') }}
+            {{-- <img src="{{ $post->getFirstMediaUrl() }}" alt="Image" class="" /> --}}
         </picture>
         <div class="divider divider-horizontal mx-0 max-w-[0.125rem]"></div>
         <div class=" w-[38rem] flex flex-col">
             <div class="flex items-center justify-between py-2 px-2 bg-base-300">
                 <div class="avatar items-center">
                     <div class="w-10 rounded-full">
-                        @if ($post->user->getFirstMediaUrl('profile', 'avatar'))
-                            <img src="{{ $post->user->getFirstMediaUrl('profile', 'avatar') }}" />
+                        @if ($post->user->getFirstMedia('profile')->img('avatar'))
+                            {{ $post->user->getFirstMedia('profile')->img('avatar') }}
                         @else
                             <img src="https://placeimg.com/192/192/people" />
                         @endif
@@ -52,8 +53,8 @@
                     @isset($post->desc)
                         <div class="avatar items-center">
                             {{-- <div class="w-10 rounded-full">
-                                                    @if ($post->user->getFirstMediaUrl('profile', 'avatar'))
-                                                        <img src="{{ $post->user->getFirstMediaUrl('profile', 'avatar') }}" />
+                                                    @if ($post->user->getFirstMedia('profile')->img('avatar'))
+                                                        {{ $post->user->getFirstMedia('profile')->img('avatar') }}"
                                                     @else
                                                         <img src="https://placeimg.com/192/192/people" />
                                                     @endif

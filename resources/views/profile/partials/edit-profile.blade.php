@@ -38,12 +38,13 @@
 
     <button class="btn mt-2" wire:loading wire:target="image">Uploading...</button>
 
-    @if ($user->getFirstMediaUrl('profile', 'avatar'))
+    @if ($user->getFirstMedia('profile')->img('avatar'))
         <div class="mt-4">
             Photo:
             <div class="avatar w-full mt-2">
                 <div class="w-24 rounded-full">
-                    <img src="{{ $user->getFirstMediaUrl('profile', 'avatar') }}" />
+                    {{ $user->getFirstMedia('profile')->img('avatar') }}
+                    {{-- <img src="{{ $user->getFirstMediaUrl('profile', 'avatar') }}" /> --}}
                 </div>
             </div>
         </div>

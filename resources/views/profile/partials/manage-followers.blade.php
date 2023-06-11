@@ -34,7 +34,7 @@
             </div>
 
             <div
-        class="w-[35rem] h-[27rem] rounded-md border-cyan-500 border transition-shadow shadow-md shadow-cyan-500 overflow-y-auto">
+        class="w-[35rem] h-[24rem] rounded-md border-cyan-500 border transition-shadow shadow-md shadow-cyan-500 overflow-y-auto">
         @if (empty($followUsers) && !empty($searchInput))
             <div class="flex w-full justify-center my-4">
                 <h2>Sorry, there are no users found</h2>
@@ -52,7 +52,7 @@
                                 <div class="avatar items-center hover:cursor-pointer">
                                     <div class="w-12 rounded-full">
                                         {{-- {{ $user }} --}}
-                                        <img src="{{ $user['userImage'] }}" />
+                                        <img src="{{ $user['userImage'] }}" alt="image">
                                     </div>
                                     <span class="mx-2 text-xl w-[26rem] truncate">
                                         {{ '@' . $user['username'] }} {{ $user['fullName'] ? ' | ' . $user['fullName'] : '' }}

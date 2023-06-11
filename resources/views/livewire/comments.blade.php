@@ -5,8 +5,8 @@
             <div class="flex justify-between items-center">
                 <div class="avatar">
                     <div class="w-10 rounded-full">
-                        @if ($comment->user->getFirstMediaUrl('profile', 'avatar'))
-                            <img src="{{ $comment->user->getFirstMediaUrl('profile', 'avatar') }}" />
+                        @if ($comment->user->getFirstMedia('profile')->img('avatar'))
+                            {{ $comment->user->getFirstMedia('profile')->img('avatar') }}
                         @else
                             <img src="https://placeimg.com/192/192/people" />
                         @endif

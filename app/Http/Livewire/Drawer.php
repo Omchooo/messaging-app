@@ -49,7 +49,9 @@ class Drawer extends Component
 
         // Image::load($this->image)->fit(Manipulations::FIT_CROP, 50, 50)->format(Manipulations::FORMAT_PNG)->save();
         // $this->image->crop(Manipulations::CROP_CENTER, 50, 50);
-        $this->user->addMedia($this->image)->toMediaCollection('profile');
+        $this->user->addMedia($this->image)
+            ->withResponsiveImages()
+            ->toMediaCollection('profile');
 
         // $this->image = $this->user->getFirstMediaUrl('profile');
 

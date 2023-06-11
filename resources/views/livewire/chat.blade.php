@@ -17,7 +17,7 @@
                 <div class="flex items-center justify-between mt-2 mx-2">
                     <div class="avatar items-center">
                         <div class="w-10 rounded-full">
-                            <img src="{{ $otherChatUser->getFirstMediaUrl('profile', 'avatar') }}" />
+                            {{ $otherChatUser->getFirstMedia('profile')->img('avatar') }}
                         </div>
                         <a href="{{ route('viewprofile.index', $otherChatUser->username) }}"><span class="mx-2">{{ $otherChatUser->full_name ?? $otherChatUser->username }}</span></a>
                     </div>

@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Overtrue\LaravelLike\Traits\Likeable;
+use Spatie\Image\Manipulations;
 
 class Post extends Model implements HasMedia
 {
@@ -32,5 +34,14 @@ class Post extends Model implements HasMedia
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('responsive')
+            ->performOnCollections('post')
+            ->withResponsiveImages()
+            // ->crop(Manipulations::CROP_CENTER, 50, 50)
+            ->nonQueued();
     }
 }

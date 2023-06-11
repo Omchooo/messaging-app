@@ -50,7 +50,7 @@ class Chat extends Component
                     'userName' => $chatRoom->username,
                     'fullName' => $chatRoom->full_name,
                     'chatUuid' => $chatRoom->chats[0]->uuid,
-                    'userImage' => $chatRoom->getFirstMediaUrl('profile', 'avatar')
+                    'userImage' => $chatRoom->getFirstMedia('profile')->img('avatar')
                 ];
 
                 if (in_array($this->uuid, $chatRoom->chats[0]->toArray())) {

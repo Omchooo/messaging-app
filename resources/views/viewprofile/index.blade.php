@@ -7,8 +7,9 @@
         <div class="card w-96 bg-base-200 border border-gray-600 shadow-xl">
             <div class="card-body flex flex-col items-center">
                 <div class="avatar items-center">
-                    <div class="w-40">
-                        <img class="mask mask-squircle" src="{{ $user->getFirstMediaUrl('profile', 'avatar') }}" />
+                    <div class="w-40 profile-squircle">
+                        {{ $user->getFirstMedia('profile')->img('avatar') }}
+                        {{-- <img class="mask mask-squircle" src="{{ $user->getFirstMedia('profile')->img('avatar') }}" /> --}}
                     </div>
                 </div>
                 <span class="my-1 text-2xl max-w-[90%] break-all">{{ $user->full_name }}</span>

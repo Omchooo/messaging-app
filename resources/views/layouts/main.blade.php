@@ -64,8 +64,8 @@
                             <div class="dropdown dropdown-end">
                                 <label tabindex="0" class="btn btn-ghost btn-circle avatar">
                                     <div class="w-12 rounded-full">
-                                        @if (auth()->user()->getFirstMediaUrl('profile', 'avatar'))
-                                            <img src="{{ auth()->user()->getFirstMediaUrl('profile', 'avatar') }}" />
+                                        @if (auth()->user()->getFirstMedia('profile')->img('avatar'))
+                                        {{ auth()->user()->getFirstMedia('profile')->img('avatar') }}
                                         @else
                                             <img src="https://placeimg.com/192/192/people" />
                                         @endif

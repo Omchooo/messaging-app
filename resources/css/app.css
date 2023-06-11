@@ -19,3 +19,19 @@
     --tw-bg-opacity: 0.8;
     background-color: hsl(var(--bc) / var(--tw-bg-opacity));
 }
+
+.show-modal-img > img {
+    @apply min-w-[26rem] max-w-md;
+}
+
+.home-img > img {
+    @apply w-144;
+}
+
+.profile-squircle > img {
+    @apply mask mask-squircle;
+}
+
+.profile-post-img > img {
+    @apply aspect-1/1 w-80 object-cover rounded-sm shadow-md;
+}

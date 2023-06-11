@@ -83,6 +83,7 @@ class User extends Authenticatable implements HasMedia
         $this->addMediaConversion('avatar')
             ->performOnCollections('profile')
             ->fit(Manipulations::FIT_CROP, 100, 100)
+            ->withResponsiveImages()
             // ->crop(Manipulations::CROP_CENTER, 50, 50)
             ->nonQueued();
     }

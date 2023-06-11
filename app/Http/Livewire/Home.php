@@ -26,6 +26,7 @@ class Home extends Component
             ->skip($this->postsCount)
             ->take($this->amount)
             ->get();
+            // dump($morePosts);
 
         $this->posts = $this->posts ? $this->posts->merge($morePosts) : $morePosts;
         $this->postsCount += $this->amount;

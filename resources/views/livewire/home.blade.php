@@ -6,8 +6,8 @@
                     <div class="flex items-center justify-between my-2 mx-2">
                         <div class="avatar items-center">
                             <div class="w-10 rounded-full">
-                                @if ($post->user->getFirstMediaUrl('profile', 'avatar'))
-                                    <img src="{{ $post->user->getFirstMediaUrl('profile', 'avatar') }}" />
+                                @if ($post->user->getFirstMedia('profile')->img('avatar'))
+                                    {{ $post->user->getFirstMedia('profile')->img('avatar') }}
                                 @else
                                     <img src="https://placeimg.com/192/192/people" />
                                 @endif
@@ -36,8 +36,8 @@
                             <livewire:follow :user="$post->user" :wire:key="uniqid()" />
                         @endif
                     </div>
-                    <picture class="flex justify-center">
-                        <img src="{{ $post->getFirstMediaUrl() }}" alt="Image" class="w-144" />
+                    <picture class="flex justify-center home-img">
+                        {{ $post->getFirstMedia('post')->img('responsive') }}
                     </picture>
                     <div class="flex flex-col mx-3">
                         <livewire:likes :post="$post" :wire:key="time().$post->id" />

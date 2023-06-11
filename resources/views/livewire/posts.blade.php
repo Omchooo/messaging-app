@@ -4,9 +4,10 @@
         @isset($posts)
             @foreach ($posts as $post)
                 <a href="{{ route('posts.show', $post->id) }}" class="hover:drop-shadow-2xl">
-                    <picture>
-                        <img src="{{ $post->getFirstMediaUrl() }}" alt="Image"
-                            class="aspect-1/1 w-80 object-cover rounded-sm shadow-md" />
+                    <picture class="profile-post-img">
+                        {{ $post->getFirstMedia('post')->img('responsive') }}
+                        {{-- <img src="{{ $post->getFirstMedia('post')->img('responsive') }}" alt="Image"
+                            class="aspect-1/1 w-80 object-cover rounded-sm shadow-md" /> --}}
                     </picture>
                 </a>
             @endforeach
@@ -42,9 +43,10 @@
             @foreach ($likedPosts as $liked)
                 @if ($liked->isLikedBy($this->user))
                     <a href="{{ route('posts.show', $liked->id) }}" class="hover:drop-shadow-2xl">
-                        <picture>
-                            <img src="{{ $liked->getFirstMediaUrl() }}" alt="Image"
-                                class="aspect-1/1 w-80 object-cover rounded-sm shadow-md" />
+                        <picture class="profile-post-img">
+                            {{ $liked->getFirstMedia('post')->img('responsive') }}
+                            {{-- <img src="{{ $liked->getFirstMedia('post')->img('responsive') }}" alt="Image"
+                                class="aspect-1/1 w-80 object-cover rounded-sm shadow-md" /> --}}
                         </picture>
                     </a>
                 @endif
@@ -82,9 +84,10 @@
             @foreach ($trashedPosts as $post)
             <div class="relative inline-block group">
                 <a href="{{ route('posts.show', $post->id) }}" class="hover:drop-shadow-2xl">
-                    <picture>
-                        <img src="{{ $post->getFirstMediaUrl() }}" alt="Image"
-                            class="aspect-1/1 w-80 object-cover rounded-sm shadow-md" />
+                    <picture class="profile-post-img">
+                        {{ $post->getFirstMedia('post')->img('responsive') }}
+                        {{-- <img src="{{ $post->getFirstMedia('post')->img('responsive') }}" alt="Image"
+                            class="aspect-1/1 w-80 object-cover rounded-sm shadow-md" /> --}}
                     </picture>
                 </a>
                 <div class="absolute inset-0 gap-5 flex items-center justify-center bg-base-200 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

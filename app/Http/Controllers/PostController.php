@@ -17,8 +17,10 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        $post = Post::create($request->getData());
-        $post->addMediaFromRequest('image')->toMediaCollection();
+        Post::create($request->getData())
+            ->addMediaFromRequest('image')
+            ->withResponsiveImages()
+            ->toMediaCollection('post');
         // $post = $request->getData();
         // dump($request->getData());
         return redirect()->route('posts.create')->with('message', 'Post has been successfully published');
@@ -87,5 +89,4 @@ class PostController extends Controller
 
         return redirect()->back();
     }
-
 }
