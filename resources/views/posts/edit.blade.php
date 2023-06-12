@@ -36,10 +36,11 @@
                 <div class=" mb-2">
 
 
-                    <figure class=" max-w-xl min-h-[20rem] bg-base-300 rounded-t-2xl">
+                    <picture class="flex justify-center max-w-xl min-h-[20rem] bg-base-300 rounded-t-2xl edit-post-img">
                         {{-- <input type="file" name="image" id="image" class="file-input file-input-ghost w-full max-w-xs absolute self-center" /> --}}
-                        <img src="{{ $post->getFirstMediaUrl() }}" alt="Image" class="min-w-[26rem] max-w-md" />
-                    </figure>
+                        {{-- <img src="{{ $post->getFirstMediaUrl('post') }}" alt="Image" class="rounded-t-2xl" /> --}}
+                        {{ $post->getFirstMedia('post')->img('responsive') }}
+                    </picture>
                 </div>
                 <div class="flex flex-col mx-3">
                     <textarea class="textarea textarea-bordered" id="desc" name="desc" placeholder="Current description: {{ $post->desc }}"></textarea>

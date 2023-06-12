@@ -35,3 +35,7 @@
 .profile-post-img > img {
     @apply aspect-1/1 w-80 object-cover rounded-sm shadow-md;
 }
+
+.edit-post-img > img {
+    @apply rounded-t-2xl;
+}
