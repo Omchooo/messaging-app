@@ -86,7 +86,7 @@
                                         @if ($post->user->id === auth()->user()->id)
                                             <li>
                                                 <a href="{{ route('posts.edit', compact('post')) }}"
-                                                    class="btn btn-sm btn-wide max-w-[8rem] bg-transparent border-none hover:bg-base-300 text-slate-800">Edit</a>
+                                                    class="btn btn-sm btn-wide max-w-[8rem] bg-transparent border-none hover:bg-base-300 text-current">Edit</a>
                                                 {{-- <a href="{{ route('posts.edit', compact('post')) }}"
                                                     class="btn btn-sm btn-wide max-w-[8rem] btn-active">Edit</a> --}}
                                             </li>

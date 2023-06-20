@@ -2,7 +2,7 @@
     <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data"">
         @csrf
         <div class="mb-4">
-            @error('image')
+            {{-- @error('image')
                 <div class="alert alert-error shadow-lg mb-4">
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none"
@@ -13,11 +13,11 @@
                         <span>{{ $message }}</span>
                     </div>
                 </div>
-            @enderror
+            @enderror --}}
 
 
             <label
-                class="flex items-center justify-center h-full bg-gray-200 w-full min-h-[200px] hover:cursor-pointer hover:bg-gray-300 rounded">
+                class="flex items-center justify-center h-full bg-gray-100 w-full min-h-[200px] hover:cursor-pointer hover:bg-gray-200 rounded border border-dashed border-gray-400">
                 <input type="file" name="image" id="image" wire:model="image" class="hidden">
                 @if ($image)
                     <img src="{{ $image->temporaryUrl() }}" alt="Uploaded Image" class="w-72 rounded" />
