@@ -1,4 +1,4 @@
-<div class="mx-3 my-2 flex flex-col gap-4 h-full overflow-y-auto scroll-smooth relative " id="chat-output">
+<div class="mx-3 my-2 flex flex-col gap-4 h-full overflow-y-auto scroll-smooth relative" id="chat-output">
     @isset($oldMessages)
     <div class="w-full flex justify-center" x-data="{
         loading: false,

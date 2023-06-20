@@ -18,5 +18,5 @@
         observer.observe(this.$el)
     }
 }" x-init="observe">
-    <button class="btn loading w-full" x-bind:class="{ 'hidden': !loading }">loading</button>
+    <button class="btn md:btn-lg btn-outline border-none loading w-full" x-bind:class="{ 'hidden': !loading }"></button>
 </div>

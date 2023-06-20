@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 2px;
+}
+@media (min-width: 768px) {
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
 }
 
 ::-webkit-scrollbar-track {
@@ -20,13 +25,13 @@
     background-color: hsl(var(--bc) / var(--tw-bg-opacity));
 }
 
-.show-modal-img > img {
+/* .show-modal-img > img {
     @apply min-w-[26rem] max-w-md;
-}
+} */
 
-.home-img > img {
-    @apply w-144;
-}
+/* .home-img > img {
+    @apply w-120 aspect-square object-scale-down;
+} */
 
 .profile-squircle > img {
     @apply mask mask-squircle;
@@ -37,5 +42,17 @@
 }
 
 .edit-post-img > img {
-    @apply rounded-t-2xl;
+    @apply rounded;
+}
+
+/* .gradient-fill {
+    fill: radial-gradient(at left top, rgb(165, 243, 252), rgb(34, 211, 238));
+} */
+
+.home-img > img {
+    @apply rounded;
+}
+
+.show-post-img > img {
+    @apply w-full aspect-square;
 }

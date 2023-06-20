@@ -3,7 +3,7 @@
         {{-- @csrf --}}
         <div class="flex flex-col mx-3">
             <div class="flex items-center justify-between px-3 my-2 gap-1">
-                <input type="text" id="message" placeholder="Send a text" class="input input-accent w-full"
+                <input type="text" id="message" placeholder="Send a text" class="input input-sm input-accent w-full"
                     wire:model.lazy='message' autocomplete="off" />
                 <button id="send" class="btn btn-circle btn-sm btn-link" type="submit">
                     <svg color="#8e8e8e" fill="#8e8e8e" height="24" role="img"

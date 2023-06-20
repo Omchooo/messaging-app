@@ -1,6 +1,6 @@
 <div class="max-w-5xl w-full">
     {{-- {{ $state }} --}}
-    <div class="gap-8 flex flex-wrap ">
+    <div class="gap-8 flex flex-wrap justify-evenly md:justify-start w-full md:max-w-3xl lg:max-w-5xl mx-auto">
         @isset($posts)
             @foreach ($posts as $post)
                 <a href="{{ route('posts.show', $post->id) }}" class="hover:drop-shadow-2xl">
@@ -31,7 +31,7 @@
                     observer.observe(this.$el)
                 }
             }" x-init="observe">
-                <button class="btn max-w-[10rem] loading w-full" x-bind:class="{ 'hidden': !loading }">loading</button>
+                <button class="btn max-w-[10rem] loading w-full md:btn-lg btn-outline border-none" x-bind:class="{ 'hidden': !loading }"></button>
             </div>
             {{-- @if ($posts->hasMorePages())
                 <button wire:click="loadMore" class="btn btn-info btn-outline">Load more</button>
@@ -71,7 +71,7 @@
                     observer.observe(this.$el)
                 }
             }" x-init="observe">
-                <button class="btn max-w-[10rem] loading w-full" x-bind:class="{ 'hidden': !loading }">loading</button>
+                <button class="btn max-w-[10rem] loading w-full md:btn-lg btn-outline border-none" x-bind:class="{ 'hidden': !loading }"></button>
             </div>
 
             {{-- @if ($likedPosts->hasMorePages())
@@ -90,16 +90,16 @@
                             class="aspect-1/1 w-80 object-cover rounded-sm shadow-md" /> --}}
                     </picture>
                 </a>
-                <div class="absolute inset-0 gap-5 flex items-center justify-center bg-base-200 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="absolute inset-0 gap-5 flex items-center justify-center bg-slate-400 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <form action="{{ route('posts.restore', $post->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-outline btn-success">Restore</button>
+                        <button type="submit" class="btn btn-sm btn-active">Restore</button>
                     </form>
                     <form action="{{ route('posts.forceDelete', $post->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-outline btn-error">Delete</button>
+                        <button type="submit" class="btn btn-sm btn-error">Delete</button>
                     </form>
                 </div>
             </div>
@@ -124,7 +124,7 @@
                     observer.observe(this.$el)
                 }
             }" x-init="observe">
-                <button class="btn max-w-[10rem] loading w-full" x-bind:class="{ 'hidden': !loading }">loading</button>
+                <button class="btn max-w-[10rem] loading w-full md:btn-lg btn-outline border-none" x-bind:class="{ 'hidden': !loading }"></button>
             </div>
 
             {{-- @if ($likedPosts->hasMorePages())

@@ -17,13 +17,13 @@ class UserSearch extends Component
             $searchInput = $this->searchInput;
             $this->searchOutput = User::where(function ($query) use ($searchInput) {
                 $query->where('username', 'LIKE', "%{$searchInput}%")
-                      ->orWhere('full_name', 'LIKE', "%{$searchInput}%");
+                    ->orWhere('full_name', 'LIKE', "%{$searchInput}%");
             })
-            // where('username', 'LIKE', "%{$this->searchInput}%")
-            // ->where('full_name', 'LIKE', "%{$this->searchInput}%")
-            ->where('id', '!=', auth()->user()->id)
-            ->with(['media'])
-            ->get();
+                // where('username', 'LIKE', "%{$this->searchInput}%")
+                // ->where('full_name', 'LIKE', "%{$this->searchInput}%")
+                ->where('id', '!=', auth()->user()->id)
+                ->with(['media'])
+                ->get();
         }
 
         if ($this->searchOutput) {
@@ -39,6 +39,7 @@ class UserSearch extends Component
             }
         }
 
-        return view('livewire.user-search');
+        return view('livewire.user-search')
+            ->extends('layouts.main');;
     }
 }

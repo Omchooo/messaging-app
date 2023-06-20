@@ -9,6 +9,7 @@ use App\Http\Controllers\ViewController;
 use App\Http\Livewire\Chat;
 use App\Http\Livewire\ChatInputField;
 use App\Http\Livewire\Home;
+use App\Http\Livewire\UserSearch;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/inbox/{uuid:chat}', Chat::class)->name('inbox.chat');
     Route::post('/inbox/message', [ChatInputField::class, 'messageReceived'])->name('inbox.message');
     Route::post('/inbox/greet/{user}', [InboxController::class, 'greetReceived'])->name('inbox.greet'); //to be removed
+
+    Route::get('/search', UserSearch::class)->name('user.search');
 
     // //ProfileController already taken by breeze
     Route::get('/user/{user:username}', [ViewController::class, 'index'])

@@ -1,10 +1,10 @@
 <div class="flex flex-col gap-6">
     @foreach ($comments as $comment)
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-4 ml-[10px]">
             {{-- comment by user --}}
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-start gap-2">
                 <div class="avatar">
-                    <div class="w-10 rounded-full">
+                    <div class="w-7 rounded-full">
                         @if ($comment->user->getFirstMedia('profile')->img('avatar'))
                             {{ $comment->user->getFirstMedia('profile')->img('avatar') }}
                         @else
@@ -13,10 +13,12 @@
                     </div>
                 </div>
                 <div class="max-w-[32rem] flex flex-col w-full items-start">
-                    <p class="w-full"><a
-                            href="{{ route('viewprofile.index', $comment->user) }}">{{ $comment->user->full_name ?? $comment->user->username }}</a>
-                    </p>
-                    <span class="break-words text-sm">{{ $comment->comment }}</span>
+                    <span class="w-full">
+                        <a href="{{ route('viewprofile.index', $comment->user) }}"
+                            class="font-semibold">{{ $comment->user->full_name ?? $comment->user->username }}</a>
+                        {{ $comment->comment }}
+                    </span>
+                    {{-- <span class="break-words text-sm">{{ $comment->comment }}</span> --}}
                 </div>
                 <livewire:likes :comment="$comment" :wire:key="$comment->id">
             </div>

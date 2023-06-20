@@ -3,8 +3,8 @@
 @section('title', $title)
 
 @section('content')
-    <div class="container mx-auto my-5 flex flex-col items-center max-w-5xl">
-        <div class="card w-96 bg-base-200 border border-gray-600 shadow-xl">
+    <div class="container mx-auto my-5 flex flex-col items-center max-w-5xl pb-16">
+        <div class="card max-w-sm w-full mx-2 md:mx-0">
             <div class="card-body flex flex-col items-center">
                 <div class="avatar items-center">
                     <div class="w-40 profile-squircle">
@@ -26,7 +26,7 @@
 
         <div class="divider"></div>
 
-        <div class="max-w-5xl w-full">
+        <div class="max-w-5xl w-full px-2 md:px-0">
             @if ($user->id === auth()->user()->id)
                 <livewire:tabs>
             @endif

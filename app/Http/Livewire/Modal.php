@@ -11,6 +11,8 @@ class Modal extends Component
     // public $state = 'hidden';
     public $showComponent = false;
 
+    protected $listeners = ['toggleComponent' => 'showComponent'];
+
     public function showComponent()
     {
         $this->showComponent = !$this->showComponent;
@@ -31,7 +33,7 @@ class Modal extends Component
 
         return view('livewire.modal', [
             'showComponent' => $this->showComponent,
-            'commentsCount' => $this->post->comments()->count(),
+            // 'commentsCount' => $this->post->comments()->count(),
         ]);
     }
 }

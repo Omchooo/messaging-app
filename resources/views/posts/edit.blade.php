@@ -28,26 +28,26 @@
         </div>
     @enderror
 
-    <div class="container mx-auto max-w-2xl my-5 flex flex-col items-center">
-        <div class="card w-144 bg-base-200 shadow-2xl my-4 border border-gray-600">
+    <div class="container mx-auto max-w-2xl my-5 flex flex-col items-center pb-16">
+        <div class="card max-w-md w-full md:w-144 shadow my-4 rounded p-4">
             <form method="POST" action="{{ route('posts.update', compact('post')) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class=" mb-2">
 
 
-                    <picture class="flex justify-center max-w-xl min-h-[20rem] bg-base-300 rounded-t-2xl edit-post-img">
+                    <picture class="flex justify-center max-w-xl min-h-[20rem] bg-base-300 rounded edit-post-img">
                         {{-- <input type="file" name="image" id="image" class="file-input file-input-ghost w-full max-w-xs absolute self-center" /> --}}
                         {{-- <img src="{{ $post->getFirstMediaUrl('post') }}" alt="Image" class="rounded-t-2xl" /> --}}
                         {{ $post->getFirstMedia('post')->img('responsive') }}
                     </picture>
                 </div>
-                <div class="flex flex-col mx-3">
+                <div class="flex flex-col">
                     <textarea class="textarea textarea-bordered" id="desc" name="desc" placeholder="Current description: {{ $post->desc }}"></textarea>
                 </div>
-                <div class="divider my-1"></div>
-                <div class="flex justify-center mb-2">
-                    <button type="submit" class="btn btn-outline btn-accent">Post</button>
+                {{-- <div class="divider my-1"></div> --}}
+                <div class="flex justify-end">
+                    <button type="submit" class="btn btn-sm btn-active btn-outline px-8 h-9 mt-4">Edit</button>
                 </div>
             </form>
         </div>

@@ -3,7 +3,7 @@
 @section('title', 'Register • InstaByte')
 
 @section('content')
-    <div class="container mx-auto max-w-5xl my-5 flex items-center justify-around">
+    <div class="container mx-auto max-w-5xl mb-5 flex items-center justify-around">
         <div class="mockup-code">
             <pre data-prefix="$"><code>create your own account</code></pre>
             <pre data-prefix=">" class="text-warning"><code>you can enter fake credentials</code></pre>

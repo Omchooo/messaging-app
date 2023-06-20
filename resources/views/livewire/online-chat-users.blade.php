@@ -3,17 +3,17 @@
     @if ($allUsers)
         @foreach ($allUsers as $user)
             <a href="{{ route('inbox.chat', $user['chatUuid']) }}">
-                <div class="w-72">
+                <div class="w-full">
                     <div class="flex items-center justify-between mt-2">
                         <div class="avatar items-center hover:cursor-pointer">
-                            <div class="w-14 rounded-full">
+                            <div class="w-10 md:w-12 rounded-full">
                                 @if ($user['userImage'])
                                     {{ $user['userImage'] }}
                                 @else
                                     <img src="https://placeimg.com/192/192/people" />
                                 @endif
                             </div>
-                            <span class="mx-2 text-xl w-56 truncate">{{ $user['fullName'] ?? $user['userName'] }}</span>
+                            <span class="mx-2 text-lg md:text-xl w-56 truncate">{{ $user['fullName'] ?? $user['userName'] }}</span>
                         </div>
                     </div>
                 </div>

@@ -23,6 +23,7 @@ module.exports = {
             },
             width: {
                 '144': '36rem',
+                '120': '30rem',
             },
             fontSize: {
                 'xxs': '0.70rem',
