@@ -6,11 +6,33 @@ use App\Events\GreetingSent;
 use App\Events\MessageSent;
 use App\Models\Chat;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class InboxController extends Controller
 {
     public $users;
+
+    function formatTimeDifference(Carbon $dateTime): string
+    {
+        $minutesDiff = $dateTime->diffInMinutes();
+
+        if ($minutesDiff < 1) {
+            $secondsDiff = $dateTime->diffInSeconds();
+            return $secondsDiff . 's';
+        } elseif ($minutesDiff < 60) {
+            return $minutesDiff . 'm';
+        } else {
+            $hoursDiff = $dateTime->diffInHours();
+
+            if ($hoursDiff < 24) {
+                return $hoursDiff . 'h';
+            } else {
+                $daysDiff = $dateTime->diffInDays();
+                return $daysDiff . 'd';
+            }
+        }
+    }
 
     public function onLoad()
     {
@@ -36,11 +58,16 @@ class InboxController extends Controller
 
         foreach ($allChatRooms as $chatRoom) {
             // dump(['username' => $chatRoom->username, 'full name' => $chatRoom->fullname, 'chat uuid' => $chatRoom->chats[0]->uuid]);
+            $lastMessage = $chatRoom->chats[0]->messages()->latest('created_at')->first();
+            $lastMessageSentAt = $lastMessage ? $this->formatTimeDifference($lastMessage->created_at) : null;
+
             $this->users[] = [
                 'userName' => $chatRoom->username,
                 'fullName' => $chatRoom->full_name,
                 'chatUuid' => $chatRoom->chats[0]->uuid,
-                'userImage' => $chatRoom->getFirstMedia('profile')->img('avatar')
+                'userImage' => $chatRoom->getFirstMedia('profile')->img('avatar'),
+                'lastMessage' => $lastMessage ? $lastMessage->text : null,
+                'lastMessageSentAt' => $lastMessageSentAt
             ];
         }
     }
