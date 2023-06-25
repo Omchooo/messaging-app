@@ -41,8 +41,8 @@
                             {{ $post->getFirstMedia('post')->img('responsive') }}
                         </picture>
 
-                        <div class="flex items-center justify-between py-3 ">
-                            <div class="avatar items-center">
+                        <div class="flex items-center justify-between py-1">
+                            <div class="avatar items-center mb-3">
                                 <div class="w-8 md:w-9 rounded-full">
                                     @if (auth()->user()->getFirstMediaUrl('profile', 'avatar'))
                                         {{-- {{ $post->user->getFirstMedia('profile')->img('avatar') }} --}}
@@ -54,11 +54,12 @@
                                 </div>
                                 <span class="flex flex-col mx-2">
                                     <a
-                                        href="{{ route('viewprofile.index', $post->user) }}">{{ $post->user->full_name ?? $post->user->username }}</a>
-                                    <span class="text-xs text-start mr-2 text-gray-400">{{ $post->created_at->diffForHumans() }}</span>
+                                        href="{{ route('viewprofile.index', $post->user) }}" class="w-24 truncate leading-5">{{ $post->user->username }}</a>
+                                    <span class="text-xs text-start mr-2 text-gray-400 leading-3">{{ $post->created_at->diffForHumans() }}</span>
                                 </span>
                             </div>
-                            <div class="flex items-center">
+
+                            <div class="flex items-center mb-3">
                                 <livewire:likes :post="$post" :wire:key="time().$post->id" />
                                 {{-- <span>{{ $post->likers_count }} likes</span> --}}
                                 <livewire:modal :post="$post" :wire:key="uniqid().time()" />

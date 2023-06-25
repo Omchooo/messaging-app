@@ -1,14 +1,14 @@
 {{-- comments modal --}}
 <div
     class="container max-w-6xl flex flex-col items-center {{ request()->is('post/*') ? 'h-max' : 'h-full' }} pb-16 md:pb-14">
-    <div class="flex md:flex-row max-w-4xl card bg-white rounded-none h-full w-full md:h-auto">
+    <div class="flex md:flex-row max-w-4xl card bg-base-100 rounded-none h-full w-full md:h-auto">
         <picture class="hidden md:flex items-center bg-base-300 md:max-w-[22rem] lg:max-w-md relative">
             {{ $post->getFirstMedia('post')->img('responsive') }}
             {{-- <img src="{{ $post->getFirstMediaUrl() }}" alt="Image" class="" /> --}}
         </picture>
         <div class="divider divider-horizontal mx-0 max-w-[0.125rem] hidden md:flex"></div>
         <div class="lg:w-[34rem] max-w-xl flex flex-col h-full w-full md:h-auto">
-            <div class="flex items-center justify-between py-2 px-2 bg-white">
+            <div class="flex items-center justify-between py-2 px-2 bg-base-100">
                 <div class="avatar items-center">
                     <div class="w-10 rounded-full">
                         @if ($post->user->getFirstMedia('profile')->img('avatar'))
@@ -42,7 +42,7 @@
                             @if ($post->user->id === auth()->user()->id)
                                 <li>
                                     <a href="{{ route('posts.edit', compact('post')) }}"
-                                        class="btn btn-sm btn-wide max-w-[8rem] bg-transparent border-none hover:bg-base-300 text-slate-800">Edit</a>
+                                        class="btn btn-sm btn-wide max-w-[8rem] bg-transparent border-none hover:bg-base-300 text-current">Edit</a>
                                     {{-- <a href="{{ route('posts.edit', compact('post')) }}"
                                         class="btn btn-sm btn-wide max-w-[8rem] btn-active">Edit</a> --}}
                                 </li>
@@ -99,7 +99,7 @@
                                 {{-- <span class="break-all ml-2 max-w-md">{{ $post->desc }}</span> --}}
                             </div>
                             <span class="mx-2 max-w-lg break-words"><span
-                                    class=" font-semibold">{{ $post->user->username }}</span> {{ $post->desc }}</span>
+                                    class="font-semibold">{{ $post->user->username }}</span> {{ $post->desc }}</span>
                         </div>
                     @endisset
                     {{-- comment with replies --}}
