@@ -32,7 +32,8 @@ class UserSearch extends Component
                 $this->users[] = [
                     'username' => $user->username,
                     'fullName' => $user->full_name,
-                    'userImage' => $user->getFirstMediaUrl('profile', 'avatar')
+                    'userImage' => $user->getFirstMediaUrl('profile', 'avatar'),
+                    'desc' => $user->bio,
                 ];
                 // dump($user->getFirstMediaUrl('profile', 'avatar'));
                 // dump($user->username);
