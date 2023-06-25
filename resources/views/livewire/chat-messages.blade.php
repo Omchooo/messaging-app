@@ -1,4 +1,4 @@
-<div class="mx-3 my-2 flex flex-col gap-4 h-full overflow-y-auto scroll-smooth relative" id="chat-output">
+<div class="md:mx-3 my-2 flex flex-col gap-4 h-full overflow-y-auto scroll-smooth relative" id="chat-output">
     @isset($oldMessages)
     <div class="w-full flex justify-center" x-data="{
         loading: false,
@@ -20,7 +20,7 @@
             observer.observe(this.$el)
         }
     }" x-init="observe">
-        <button class="btn btn-xs before:ml-2 loading" x-bind:class="{ 'hidden': !loading }"></button>
+        <button class="btn btn-xs bg-transparent border-none before:ml-2 loading" x-bind:class="{ 'hidden': !loading }"></button>
     </div>
     @endisset
 
@@ -30,7 +30,7 @@
         @foreach ($oldMessages as $oMsg)
             @if ($oMsg['isAuthor'])
                 {{-- sender --}}
-                <div class="chat chat-end">
+                <div class="chat chat-end pl-2">
                     {{-- <div class="chat-image avatar">
                         <div class="w-10 rounded-full">
                             <img src="https://placeimg.com/192/192/people" />
@@ -41,14 +41,14 @@
                         {{-- {{ $oMsg['isAuthor'] }} --}}
                         <time class="text-xs opacity-50">{{ $oMsg['sentAt'] }}</time>
                     </div>
-                    <div class="chat-bubble">{{ $oMsg['message'] }}</div>
+                    <div class="chat-bubble max-w-lg bg-base-200">{{ $oMsg['message'] }}</div>
                     {{-- <div class="chat-footer opacity-50">
                         Seen at 12:46
                     </div> --}}
                 </div>
             @else
                 {{-- receiver --}}
-                <div class="chat chat-start">
+                <div class="chat chat-start pr-2">
                     {{-- <div class="chat-image avatar">
                         <div class="w-10 rounded-full">
                             <img src="https://placeimg.com/192/192/people" />
@@ -58,7 +58,7 @@
                         {{ $oMsg['sender'] }}
                         <time class="text-xs opacity-50">{{ $oMsg['sentAt'] }}</time>
                     </div>
-                    <div class="chat-bubble">{{ $oMsg['message'] }}
+                    <div class="chat-bubble max-w-lg bg-base-200">{{ $oMsg['message'] }}
                     </div>
                     {{-- <div class="chat-footer opacity-50">
                         Delivered
@@ -72,7 +72,7 @@
         @foreach ($newMessage as $nMsg)
             @if ($nMsg['isAuthor'])
                 {{-- sender --}}
-                <div class="chat chat-end">
+                <div class="chat chat-end pl-2">
                     {{-- <div class="chat-image avatar">
                         <div class="w-10 rounded-full">
                             <img src="https://placeimg.com/192/192/people" />
@@ -83,14 +83,14 @@
                         {{-- {{ $nMsg['isAuthor'] }} --}}
                         <time class="text-xs opacity-50">just now</time>
                     </div>
-                    <div class="chat-bubble">{{ $nMsg['message'] }}</div>
+                    <div class="chat-bubble max-w-lg bg-base-200">{{ $nMsg['message'] }}</div>
                     {{-- <div class="chat-footer opacity-50">
                         Seen at 12:46
                     </div> --}}
                 </div>
             @else
                 {{-- receiver --}}
-                <div class="chat chat-start">
+                <div class="chat chat-start pr-2">
                     {{-- <div class="chat-image avatar">
                         <div class="w-10 rounded-full">
                             <img src="https://placeimg.com/192/192/people" />
@@ -100,7 +100,7 @@
                         {{ $nMsg['sender'] }}
                         <time class="text-xs opacity-50">just now</time>
                     </div>
-                    <div class="chat-bubble">{{ $nMsg['message'] }}
+                    <div class="chat-bubble max-w-lg  bg-base-200">{{ $nMsg['message'] }}
                     </div>
                     {{-- <div class="chat-footer opacity-50">
                         Delivered

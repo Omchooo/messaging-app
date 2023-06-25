@@ -1,24 +1,28 @@
-<div>
+<div class="flex flex-col gap-2">
     {{-- contacts --}}
     @if ($allUsers)
         @foreach ($allUsers as $user)
-            <a href="{{ route('inbox.chat', $user['chatUuid']) }}">
-                <div class="w-full">
-                    <div class="flex items-center justify-between mt-2">
-                        <div class="avatar items-center hover:cursor-pointer">
-                            <div class="w-10 md:w-12 rounded-full">
+            <a href="{{ route('inbox.chat', $user['chatUuid']) }}" class="rounded hover:bg-base-100 p-2">
+                <div class="flex w-full">
+                    <div class="flex w-full items-center justify-between">
+                        <div class="avatar w-full items-center hover:cursor-pointer">
+                            <div class="w-8 md:w-16 rounded-full">
                                 @if ($user['userImage'])
                                     {{ $user['userImage'] }}
                                 @else
                                     <img src="https://placeimg.com/192/192/people" />
                                 @endif
                             </div>
-                            <span class="mx-2 text-lg md:text-xl w-56 truncate">{{ $user['fullName'] ?? $user['userName'] }}</span>
+                            <span
+                                class="flex flex-col items-start w-full mx-2 text-lg truncate leading-5">{{ $user['fullName'] ?? $user['userName'] }}
+                                <p class="text-sm max-w-[11rem] truncate text-gray-400">{{ $user['lastMessage'] }}</p>
+                            </span>
+                            <span class="text-xs w-10 truncate text-gray-400">{{ $user['lastMessageSentAt'] }}</span>
                         </div>
                     </div>
                 </div>
             </a>
-            <div class="divider my-1"></div>
+            {{-- <div class="divider my-1"></div> --}}
         @endforeach
     @else
         <h2>No users to show, get some friends first!</h2>

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class Chat extends Component
@@ -46,11 +47,16 @@ class Chat extends Component
             foreach ($allChatRooms as $chatRoom) {
                 // dump(['username' => $chatRoom->username, 'full name' => $chatRoom->full_name, 'chat uuid' => $chatRoom->chats[0]->uuid]);
                 // dump($chatRoom->chats[0]->toArray());
+                $lastMessage = $chatRoom->chats[0]->messages()->latest('created_at')->first();
+                $lastMessageSentAt = $lastMessage ? $this->formatTimeDifference($lastMessage->created_at) : null;
+
                 $this->users[] = [
                     'userName' => $chatRoom->username,
                     'fullName' => $chatRoom->full_name,
                     'chatUuid' => $chatRoom->chats[0]->uuid,
-                    'userImage' => $chatRoom->getFirstMedia('profile')->img('avatar')
+                    'userImage' => $chatRoom->getFirstMedia('profile')->img('avatar'),
+                    'lastMessage' => $lastMessage ? $lastMessage->text : null,
+                    'lastMessageSentAt' => $lastMessageSentAt
                 ];
 
                 if (in_array($this->uuid, $chatRoom->chats[0]->toArray())) {
@@ -78,5 +84,26 @@ class Chat extends Component
     {
         return view('livewire.chat')
             ->extends('layouts.main');
+    }
+
+    function formatTimeDifference(Carbon $dateTime): string
+    {
+        $minutesDiff = $dateTime->diffInMinutes();
+
+        if ($minutesDiff < 1) {
+            $secondsDiff = $dateTime->diffInSeconds();
+            return $secondsDiff . 's';
+        } elseif ($minutesDiff < 60) {
+            return $minutesDiff . 'm';
+        } else {
+            $hoursDiff = $dateTime->diffInHours();
+
+            if ($hoursDiff < 24) {
+                return $hoursDiff . 'h';
+            } else {
+                $daysDiff = $dateTime->diffInDays();
+                return $daysDiff . 'd';
+            }
+        }
     }
 }
