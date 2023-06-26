@@ -6,7 +6,7 @@
                 <div class="flex w-full">
                     <div class="flex w-full items-center justify-between">
                         <div class="avatar w-full items-center hover:cursor-pointer">
-                            <div class="w-8 md:w-16 rounded-full">
+                            <div class="w-14 md:w-16 rounded-full">
                                 @if ($user['userImage'])
                                     {{ $user['userImage'] }}
                                 @else

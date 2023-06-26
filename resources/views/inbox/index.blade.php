@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="drawer drawer-mobile rounded h-full max-h-[32rem] md:max-h-[48rem] container">
+<div class="drawer drawer-mobile rounded h-full container">
     <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content flex flex-col items-center justify-center">
         <!-- Page content here -->

@@ -1,9 +1,9 @@
 @section('title', 'Search • InstaByte')
 
-<div class="max-w-4xl w-full flex flex-col items-center gap-8 pb-16 px-2">
+<div class="max-w-4xl w-full flex flex-col items-center gap-8 pb-20 px-2">
     <div class="flex flex-col items-center max-w-md flex-wrap">
         <h2 class="text-lg font-medium max-w-fit">
-            Cannot find user you're looking for?
+            Having trouble finding the user you're looking for?
         </h2>
         <p class="mt-1 text-sm max-w-fit">
             Search down below, someone will surely pop up!
@@ -21,14 +21,14 @@
     @else
         @if (empty($users) && empty($searchInput))
             <div class="flex w-full justify-center my-4">
-                <h2>All searched users will pop up here!</h2>
+                <p class="text-sm text-gray-400">Fresh results are served here</p>
             </div>
         @else
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($users as $user)
                     <div class="card w-full min-w-[17rem] max-w-[17rem] bg-base-100 shadow rounded p-4 gap-5 flex-1">
                         <a href="{{ route('viewprofile.index', $user['username']) }}" class="avatar justify-center">
-                            <div class="w-28 mask mask-squircle">
+                            <div class="w-20 md:w-28 mask mask-squircle">
                                 <img src="{{ $user['userImage'] }}" alt="User" />
                             </div>
                         </a>

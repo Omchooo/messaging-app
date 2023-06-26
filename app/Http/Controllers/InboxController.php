@@ -13,7 +13,7 @@ class InboxController extends Controller
 {
     public $users;
 
-    function formatTimeDifference(Carbon $dateTime): string
+    function formatTimeDifference(Carbon $dateTime)
     {
         $minutesDiff = $dateTime->diffInMinutes();
 

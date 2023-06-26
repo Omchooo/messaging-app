@@ -7,14 +7,14 @@
         <div class="card max-w-sm w-full mx-2 md:mx-0">
             <div class="card-body flex flex-col items-center">
                 <div class="avatar items-center">
-                    <div class="w-40 profile-squircle">
+                    <div class="w-28 md:w-40 profile-squircle">
                         {{ $user->getFirstMedia('profile')->img('avatar') }}
                         {{-- <img class="mask mask-squircle" src="{{ $user->getFirstMedia('profile')->img('avatar') }}" /> --}}
                     </div>
                 </div>
                 <span class="my-1 text-2xl max-w-[90%] break-all">{{ $user->full_name }}</span>
                 <span class="my-1 text-xl max-w-[90%] truncate">{{ '@' . $user->username }}</span>
-                <span class="flex justify-evenly my-1max-w-[90%] w-full">
+                <span class="flex justify-evenly my-1 max-w-[90%] w-full">
                     <livewire:follow-modal :user="$user" />
                     {{-- <span>{{ $user->followers->count() }} followers</span> --}}
                     {{-- <span>{{ $user->following->count() }} following</span> --}}

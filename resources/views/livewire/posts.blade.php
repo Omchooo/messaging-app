@@ -83,18 +83,18 @@
         @isset($trashedPosts)
             @foreach ($trashedPosts as $post)
             <div class="relative inline-block group">
-                <a href="{{ route('posts.show', $post->id) }}" class="hover:drop-shadow-2xl">
+                <div class="hover:drop-shadow-2xl">
                     <picture class="profile-post-img">
                         {{ $post->getFirstMedia('post')->img('responsive') }}
                         {{-- <img src="{{ $post->getFirstMedia('post')->img('responsive') }}" alt="Image"
                             class="aspect-1/1 w-80 object-cover rounded-sm shadow-md" /> --}}
                     </picture>
-                </a>
-                <div class="absolute inset-0 gap-5 flex items-center justify-center bg-slate-400 bg-opacity-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                </div>
+                <div class="absolute inset-0 gap-5 flex items-center justify-center bg-slate-400 bg-opacity-75 md:opacity-0 opacity-100 md:group-hover:opacity-100 transition-opacity duration-300">
                     <form action="{{ route('posts.restore', $post->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-active">Restore</button>
+                        <button type="submit" class="btn btn-sm btn-info">Restore</button>
                     </form>
                     <form action="{{ route('posts.forceDelete', $post->id) }}" method="POST">
                         @csrf

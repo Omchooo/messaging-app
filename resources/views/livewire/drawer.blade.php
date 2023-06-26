@@ -1,6 +1,6 @@
-<div class="drawer drawer-mobile rounded h-full max-h-[32rem] md:max-h-[48rem] max-w-5xl container">
+<div class="drawer drawer-mobile rounded h-full max-w-5xl container">
     <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content flex flex-col items-center space-y-10 py-10 bg-base-300 overflow-y-auto h-full ">
+    <div class="drawer-content flex flex-col items-center space-y-10 py-10 overflow-y-auto h-full ">
         <!-- Page content here -->
         @includeWhen($toggleTab == 1, 'profile.partials.edit-profile', ['user' => $user])
         @includeWhen($toggleTab == 2, 'profile.partials.manage-followers', ['user' => $user])

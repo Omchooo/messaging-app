@@ -86,7 +86,7 @@ class Chat extends Component
             ->extends('layouts.main');
     }
 
-    function formatTimeDifference(Carbon $dateTime): string
+    function formatTimeDifference(Carbon $dateTime)
     {
         $minutesDiff = $dateTime->diffInMinutes();
 
