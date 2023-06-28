@@ -3,7 +3,7 @@
 <div class="max-w-4xl w-full flex flex-col items-center gap-8 pb-20 px-2">
     <div class="flex flex-col items-center max-w-md flex-wrap">
         <h2 class="text-lg font-medium max-w-fit">
-            Having trouble finding the user you're looking for?
+            Having trouble finding an user?
         </h2>
         <p class="mt-1 text-sm max-w-fit">
             Search down below, someone will surely pop up!
@@ -11,12 +11,12 @@
     </div>
 
     <input type="text" placeholder="Search here..." wire:model.debounce.300ms='searchInput'
-        class="input input-bordered input-accent border-cyan-600 outline-cyan-600 focus:outline-cyan-600 w-full max-w-xs" />
+        class="input input-info input-sm focus:outline-1 focus:border-none focus:ring-0 w-full max-w-xs" />
 
     {{-- original --}}
     @if (empty($users) && !empty($searchInput))
         <div class="flex w-full justify-center my-4">
-            <h2>Sorry, there are no users found</h2>
+            <p class="text-sm text-gray-400">Sorry, there are no users found</p>
         </div>
     @else
         @if (empty($users) && empty($searchInput))
