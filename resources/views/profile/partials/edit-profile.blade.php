@@ -36,19 +36,9 @@
 
     </header>
 
-    <button class="btn mt-2" wire:loading wire:target="image">Uploading...</button>
+    {{-- <button class="btn mt-2" wire:loading wire:target="image">Uploading...</button> --}}
 
-    @if ($user->getFirstMedia('profile')->img('avatar'))
-        <div class="mt-4">
-            Photo:
-            <div class="avatar w-full mt-2">
-                <div class="w-24 rounded-full">
-                    {{ $user->getFirstMedia('profile')->img('avatar') }}
-                    {{-- <img src="{{ $user->getFirstMediaUrl('profile', 'avatar') }}" /> --}}
-                </div>
-            </div>
-        </div>
-    @endif
+
 
     {{-- @if ($user->getFirstMediaUrl('profile'))
         <div class="mt-4">
@@ -70,15 +60,71 @@
     <form wire:submit.prevent='uploadImage' class="mt-4 space-y-6">
 
         {{-- Profile picture --}}
-        <div class="form-control w-full max-w-xs mt-4">
-            <label class="label pt-0">
+        <div class="form-control w-full mt-4">
+            {{-- <label class="label pt-0">
                 <span class="label-text">Profile picture</span>
-            </label>
-            <figure class="my-2 w-full max-w-xs">
-                <input type="file" wire:model='image' class="file-input file-input-bordered w-full max-w-xs" />
+            </label> --}}
 
-                {{-- <img src="https://placeimg.com/400/600/arch" alt="Shoes" class="aspect-9/16" /> --}}
-            </figure>
+            {{-- @if ($user->getFirstMedia('profile')->img('avatar')) --}}
+
+            {{-- <div class="mt-4">
+            Photo:
+            <div class="avatar w-full mt-2">
+                <div class="w-24 rounded-full">
+                    {{ $user->getFirstMedia('profile')->img('avatar') }}
+                    <img src="{{ $user->getFirstMediaUrl('profile', 'avatar') }}" />
+                </div>
+            </div>
+        </div> --}}
+
+            <div x-data="{ photoName: null, photoPreview: null }" class="mt-4 text-center md:text-start">
+                <!-- Photo File Input -->
+                <input type="file" class="hidden" x-ref="photo" wire:model='image'
+                    x-on:change="
+                                photoName = $refs.photo.files[0].name;
+                                const reader = new FileReader();
+                                reader.onload = (e) => {
+                                    photoPreview = e.target.result;
+                                };
+                                reader.readAsDataURL($refs.photo.files[0]);
+                            ">
+
+                <label class="block label-text mb-2 ml-1" for="photo">
+                    Profile Photo
+                </label>
+
+                <div class="flex flex-col w-full items-center md:items-start">
+                    <!-- Current Profile Photo -->
+                    <div class="mt-2 md:ml-4" x-show="! photoPreview">
+                        {{-- <img src="{{ $user->getFirstMedia('profile')->img('avatar') }}" class="w-40 h-40 m-auto rounded-full shadow"> --}}
+                        <div class="avatar w-full">
+                            <div class="w-24 rounded-full">
+                                {{ $user->getFirstMedia('profile')->img('avatar') }}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- New Profile Photo Preview -->
+                    <div class="mt-2 md:ml-4" x-show="photoPreview" style="display: none;">
+                        <span class="block w-24 h-24 rounded-full shadow"
+                            x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' +
+                            photoPreview + '\');'"
+                            style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url('null');">
+                        </span>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-active mt-2 text-xs font-normal"
+                        x-on:click.prevent="$refs.photo.click()">
+                        Select New Photo
+                    </button>
+                </div>
+            </div>
+
+            {{-- @endif --}}
+
+            {{-- <figure class="my-2 w-full max-w-xs"> --}}
+            {{-- <input type="file" wire:model='image' class="file-input file-input-bordered w-full max-w-xs" /> --}}
+
+
+            {{-- </figure> --}}
         </div>
 
 
