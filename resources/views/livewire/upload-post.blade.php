@@ -17,13 +17,13 @@
 
 
             <label
-                class="flex items-center justify-center h-full bg-gray-100 w-full min-h-[200px] hover:cursor-pointer hover:bg-gray-200 rounded border border-dashed border-gray-400">
+                class="flex items-center justify-center h-full w-full min-h-[200px] hover:cursor-pointer hover:bg-base-200 rounded border border-dashed border-gray-400">
                 <input type="file" name="image" id="image" wire:model="image" class="hidden">
                 @if ($image)
                     <img src="{{ $image->temporaryUrl() }}" alt="Uploaded Image" class="w-72 rounded" />
                     {{-- <label for="image" class=""></label> --}}
                 @else
-                    <p>Upload your image</p>
+                    <p class="text-current">Upload your image</p>
                     {{-- <label for="image">Add photo</label> --}}
                 @endif
             </label>
