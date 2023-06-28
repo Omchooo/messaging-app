@@ -118,7 +118,7 @@
                 </span>
             </div>
 
-            <div class="hidden md:block max-w-sm">
+            <div class="hidden md:block max-w-sm w-full">
                 <img src="{{ asset('storage/auth-images/auth-img-' . rand(2, 24) . '.jpg') }}" alt="Image"
                     class="h-full aspect-9/16">
             </div>

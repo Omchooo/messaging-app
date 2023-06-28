@@ -6,7 +6,7 @@
     <div class="container mx-auto max-w-4xl md:my-9 flex items-center justify-around">
         <div class="card flex-row w-full justify-center bg-base-100 shadow-lg rounded my-4">
 
-            <div class="hidden md:block max-w-sm">
+            <div class="hidden md:block max-w-sm w-full">
                 <img src="{{ asset('storage/auth-images/auth-img-1.jpg') }}" alt="Image"
                     class="h-full aspect-9/16">
             </div>
