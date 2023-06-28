@@ -41,7 +41,7 @@
                         {{-- {{ $oMsg['isAuthor'] }} --}}
                         <time class="text-xs opacity-50">{{ $oMsg['sentAt'] }}</time>
                     </div>
-                    <div class="chat-bubble max-w-lg bg-base-200">{{ $oMsg['message'] }}</div>
+                    <div class="chat-bubble max-w-lg bg-base-200 text-current">{{ $oMsg['message'] }}</div>
                     {{-- <div class="chat-footer opacity-50">
                         Seen at 12:46
                     </div> --}}
@@ -58,7 +58,7 @@
                         {{ $oMsg['sender'] }}
                         <time class="text-xs opacity-50">{{ $oMsg['sentAt'] }}</time>
                     </div>
-                    <div class="chat-bubble max-w-lg bg-base-200">{{ $oMsg['message'] }}
+                    <div class="chat-bubble max-w-lg bg-base-200 text-current">{{ $oMsg['message'] }}
                     </div>
                     {{-- <div class="chat-footer opacity-50">
                         Delivered
@@ -83,7 +83,7 @@
                         {{-- {{ $nMsg['isAuthor'] }} --}}
                         <time class="text-xs opacity-50">just now</time>
                     </div>
-                    <div class="chat-bubble max-w-lg bg-base-200">{{ $nMsg['message'] }}</div>
+                    <div class="chat-bubble max-w-lg bg-base-200 text-current">{{ $nMsg['message'] }}</div>
                     {{-- <div class="chat-footer opacity-50">
                         Seen at 12:46
                     </div> --}}
@@ -100,7 +100,7 @@
                         {{ $nMsg['sender'] }}
                         <time class="text-xs opacity-50">just now</time>
                     </div>
-                    <div class="chat-bubble max-w-lg  bg-base-200">{{ $nMsg['message'] }}
+                    <div class="chat-bubble max-w-lg  bg-base-200 text-current">{{ $nMsg['message'] }}
                     </div>
                     {{-- <div class="chat-footer opacity-50">
                         Delivered
