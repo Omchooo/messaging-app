@@ -83,7 +83,7 @@
                                         </svg>
                                     </label>
                                     <ul tabindex="0"
-                                        class="dropdown-content max-w-[9rem] flex flex-col gap-1 mr-2 p-2 shadow bg-base-100 rounded w-52">
+                                        class="dropdown-content max-w-[9rem] flex flex-col gap-1 mr-2 p-2 shadow-lg bg-base-100 rounded w-52">
                                         @if ($post->user->id === auth()->user()->id)
                                             <li>
                                                 <a href="{{ route('posts.edit', compact('post')) }}"

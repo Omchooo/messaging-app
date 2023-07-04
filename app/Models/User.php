@@ -78,6 +78,16 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsToMany(User::class, 'follows', 'followed_id', 'follower_id');
     }
 
+    public function sentNotifications()
+    {
+        return $this->hasMany(Notification::class, 'from_user');
+    }
+
+    public function receivedNotifications()
+    {
+        return $this->hasMany(Notification::class, 'to_user');
+    }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('avatar')

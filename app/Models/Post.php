@@ -36,6 +36,11 @@ class Post extends Model implements HasMedia
         return $this->hasMany(Comment::class);
     }
 
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('responsive')

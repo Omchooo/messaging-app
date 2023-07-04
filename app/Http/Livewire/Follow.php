@@ -15,9 +15,9 @@ class Follow extends Component
 
     protected $listeners = ['followStatusUpdated'];
 
-    public function mount($user, $buttonClasses = "btn-xs btn-outline text-xs")
+    public function mount($user, $authUser = null, $buttonClasses = "btn-xs btn-outline text-xs")
     {
-        $this->authUser = Auth::user();
+        $this->authUser = $authUser ?? Auth::user();
         $this->followUser = $user;
 
         $this->isFollowing = $this->authUser->following->contains($this->followUser);
@@ -41,7 +41,7 @@ class Follow extends Component
 
         $this->isFollowing = !$this->isFollowing;
 
-        $this->emit('followStatusUpdated', $this->isFollowing, $this->followUser->id);
+        $this->emit('followStatusUpdated', $this->isFollowing, $this->followUser->id ?? $this->followUser);
     }
 
     public function addFollow()
@@ -56,7 +56,7 @@ class Follow extends Component
 
     public function followStatusUpdated($isFollowing, $userId)
     {
-        if ($this->followUser->id == $userId) {
+        if ($this->followUser->id ?? $this->followUser == $userId) {
             $this->isFollowing = $isFollowing;
         }
     }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InboxController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ViewController;
@@ -61,6 +62,9 @@ Route::middleware('auth')->group(function () {
         ->withTrashed();
 
     Route::post('/comment', [CommentController::class, 'store'])->name('comments.store');
+
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
