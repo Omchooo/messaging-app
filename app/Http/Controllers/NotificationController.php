@@ -44,7 +44,7 @@ class NotificationController extends Controller
                     'postId' => $notification->post_id,
                     'postImage' => $notificationImage ?? null,
                     'sentAt' => $sentAt ?? null
-                ];
+                ] ?? [];
 
             }
         }
