@@ -14,8 +14,8 @@ class NotificationController extends Controller
     public function index()
     {
         $notificationText = $this->notificationText();
-        $notifications = Notification::latest()
-                        ->where('to_user', 1)
+        $notifications = Notification::latest('updated_at')
+                        ->where('to_user', Auth::user()->id)
                         ->with(['post.media', 'fromUser.media'])
                         ->get();
         // $authUser = Auth::user();
@@ -24,7 +24,7 @@ class NotificationController extends Controller
         
         foreach ($notifications as $notification) {
             $notificationType = $notification->type;
-            $sentAt = $notification ? $this->formatTimeDifference($notification->created_at) : null;
+            $sentAt = $notification ? $this->formatTimeDifference($notification->updated_at) : null;
             // dump($notification->toArray());
             
             if (isset($notificationText[$notificationType])) {

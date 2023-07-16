@@ -29,11 +29,11 @@
         </div>
     @enderror --}}
 
-    <div class="container md:mx-auto max-w-lg my-5 px-2 flex flex-col items-center pb-16 border border-red-400">
-        <div class="card w-full shadow my-4 rounded p-4 border border-blue-700 gap-2">
+    <div class="container md:mx-auto max-w-lg my-5 px-2 flex flex-col items-center pb-16">
+        <div class="card w-full shadow-lg my-4 rounded p-4 gap-2">
             @isset($allNotifications)
                 @foreach ($allNotifications as $notification)
-                    <div class="flex justify-between items-center w-full border border-green-600 p-2">
+                    <div class="flex justify-between items-center w-full bg-base-200 rounded p-2">
                         <a href="{{ route('viewprofile.index', $notification['senderName']) }}" class="avatar">
                             <div class="w-10 md:w-12 rounded-full">
                                 <img src="{{ $notification['senderImage'] }}" />

@@ -124,7 +124,7 @@
                 </div>
                 <span class="text-xs my-1">{{ $post->created_at->diffForHumans() }}</span>
                 <div class="divider my-0"></div>
-                <livewire:add-comment :post_id="$post->id">
+                <livewire:add-comment :post="$post">
             </div>
         </div>
     </div>

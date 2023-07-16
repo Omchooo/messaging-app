@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Enums\NotificationType;
 use App\Http\Requests\CommentRequest;
 use App\Models\Comment;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
@@ -11,15 +13,20 @@ use Livewire\Component;
 class AddComment extends Component
 {
     public $comment;
+    // private $post;
+    public $authUser;
     public $post_id;
+    public $post_auth;
 
     protected $rules = [
         'comment' => 'required|min:1'
     ];
 
-    public function mount($post_id)
+    public function mount($post)
     {
-        $this->post_id = $post_id;
+        $this->post_id = $post->id;
+        $this->post_auth = $post->user->id;
+        $this->authUser = Auth::user()->id;
     }
 
     public function render()
@@ -47,11 +54,20 @@ class AddComment extends Component
 
         Comment::create([
             'comment' => $this->comment,
-            'user_id' => auth()->id(),
+            'user_id' => $this->post_auth,
             'post_id' => $this->post_id,
-    ]);
+        ]);
+
+        if ($this->authUser != $this->post_auth) {
+
+            Notification::create([
+                'from_user' => $this->authUser,
+                'to_user' => $this->post_auth,
+                'type' => NotificationType::Comment,
+                'post_id' => $this->post_id,
+            ]);
+        }
 
         $this->comment = '';
     }
 }
-

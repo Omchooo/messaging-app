@@ -96,11 +96,11 @@ class InboxController extends Controller
     //     return response()->json('Message Broadcasted');
     // }
 
-    public function greetReceived(Request $request, User $user)
-    {
-        broadcast(new GreetingSent($user, "{$request->user()->username} greeted you"));
-        broadcast(new GreetingSent($request->user(), "you greeted {$user->username}"));
+    // public function greetReceived(Request $request, User $user)
+    // {
+    //     broadcast(new GreetingSent($user, "{$request->user()->username} greeted you"));
+    //     broadcast(new GreetingSent($request->user(), "you greeted {$user->username}"));
 
-        return "Greeting {$user->username} from {$request->user()->username}";
-    }
+    //     return "Greeting {$user->username} from {$request->user()->username}";
+    // }
 }

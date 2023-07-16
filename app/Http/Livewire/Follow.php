@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Enums\NotificationType;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -33,6 +35,25 @@ class Follow extends Component
 
     public function setFollow()
     {
+            $notification = Notification::where('from_user', $this->authUser->id)
+                ->where('type', NotificationType::Follow)
+                ->first();
+                // dump($notification);
+            // dd($this->hasLiked);
+            if (!$notification && $this->isFollowing && $this->authUser->id != $this->followUser->id) {
+                // dump('wow');
+
+                Notification::create([
+                    'from_user' => $this->authUser->id,
+                    'to_user' => $this->followUser->id ?? $this->followUser,
+                    'type' => NotificationType::Follow,
+                ]);
+            }
+
+            if (!$this->isFollowing && $this->authUser->id != $this->followUser->id) {
+                $notification->touch();
+            }
+
         if ($this->authUser->following->contains($this->followUser)) {
             $this->removeFollow();
         } else {

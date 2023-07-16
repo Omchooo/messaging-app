@@ -2,6 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Enums\NotificationType;
+use App\Models\Notification;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -11,14 +14,19 @@ class Likes extends Component
     public $post;
     public $comment;
     public $type;
-    // public
+    public $authUser;
+    public $hasLiked;
+
+    public function mount()
+    {
+        $this->authUser = Auth::user();
+    }
 
     public function getType()
     {
         if ($this->post) {
             $this->type = $this->post;
-        }
-        else {
+        } else {
             $this->type = $this->comment;
         }
     }
@@ -26,10 +34,11 @@ class Likes extends Component
     public function getColor()
     {
         $this->getType();
-        if (Auth::user()->hasLiked($this->type)) {
+        if ($this->authUser->hasLiked($this->type)) {
+            $this->hasLiked = true;
             return '#ed4956';
-        }
-        else {
+        } else {
+            $this->hasLiked = false;
             return '#8e8e8e';
         }
     }
@@ -37,9 +46,34 @@ class Likes extends Component
     public function setLike()
     {
         $this->getType();
+
+        if ($this->post) {
+            $notification = Notification::where('post_id', $this->post->id)
+                ->where('from_user', $this->authUser->id)
+                ->where('type', NotificationType::Like)
+                ->first();
+                // dump($notification);
+            // dd($this->hasLiked);
+            if (!$notification && $this->authUser->id != $this->post->user->id) {
+                // dump('wow');
+
+                Notification::create([
+                    'from_user' => $this->authUser->id,
+                    'to_user' => $this->post->user->id,
+                    'type' => NotificationType::Like,
+                    'post_id' => $this->post->id,
+                ]);
+            }
+
+            // dd($notification);
+
+            if (!$this->hasLiked && $this->authUser->id != $this->post->user->id) {
+                $notification->touch();
+            }
+        }
         // $this->getColor();
-        // return Auth::user()->toggleLike($this->type);
-        return Auth::user()->toggleLike($this->type);
+        // return $this->authUser->toggleLike($this->type);
+        return $this->authUser->toggleLike($this->type);
     }
 
     public function getLikes()
