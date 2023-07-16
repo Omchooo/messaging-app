@@ -32,6 +32,11 @@
     <div class="container md:mx-auto max-w-lg my-5 px-2 flex flex-col items-center pb-16">
         <div class="card w-full shadow-lg my-4 rounded p-4 gap-2">
             @isset($allNotifications)
+                @empty($allNotifications)
+                    <div class="flex justify-center w-full">
+                        No notifications available
+                    </div>
+                @endempty
                 @foreach ($allNotifications as $notification)
                     <div class="flex justify-between items-center w-full bg-base-200 rounded p-2">
                         <a href="{{ route('viewprofile.index', $notification['senderName']) }}" class="avatar">

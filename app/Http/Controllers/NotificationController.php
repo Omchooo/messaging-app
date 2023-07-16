@@ -13,6 +13,8 @@ class NotificationController extends Controller
 {
     public function index()
     {
+        $allNotifications = [];
+
         $notificationText = $this->notificationText();
         $notifications = Notification::latest('updated_at')
                         ->where('to_user', Auth::user()->id)
@@ -44,7 +46,7 @@ class NotificationController extends Controller
                     'postId' => $notification->post_id,
                     'postImage' => $notificationImage ?? null,
                     'sentAt' => $sentAt ?? null
-                ] ?? [];
+                ];
 
             }
         }
