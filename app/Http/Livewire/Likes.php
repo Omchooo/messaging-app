@@ -54,7 +54,7 @@ class Likes extends Component
                 ->first();
                 // dump($notification);
             // dd($this->hasLiked);
-            if (!$notification && $this->authUser->id != $this->post->user->id) {
+            if (!$notification && !$this->hasLiked && $this->authUser->id != $this->post->user->id) {
                 // dump('wow');
 
                 Notification::create([
@@ -67,7 +67,7 @@ class Likes extends Component
 
             // dd($notification);
 
-            if (!$this->hasLiked && $this->authUser->id != $this->post->user->id) {
+            if ($notification && !$this->hasLiked && $this->authUser->id != $this->post->user->id) {
                 $notification->touch();
             }
         }
