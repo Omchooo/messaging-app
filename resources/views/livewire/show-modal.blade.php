@@ -86,7 +86,7 @@
                 <div
                     class="flex flex-col gap-6 min-h-[15rem] lg:min-h-[20rem] h-full w-[calc(100%-0.5rem)] overflow-y-auto absolute">
                     @isset($post->desc)
-                        <div class="flex justify-between gap-2">
+                        <div class="flex gap-2">
                             <div class="avatar items-start ml-1">
                                 <div class="w-7 rounded-full ">
                                     @if ($post->user->getFirstMedia('profile')->img('avatar'))
